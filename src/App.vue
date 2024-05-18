@@ -13,6 +13,6 @@ import AppLayout from "/src/Layout/AppLayout.vue";
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
