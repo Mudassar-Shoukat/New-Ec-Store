@@ -1,6 +1,7 @@
 <template>
   <div>
     <form
+      @submit.prevent="handleSubmit"
       class="max-w-md mx-auto bg-[#b3b8bf1f] px-6 pt-10 pb-8 border-[1px] border-[#e4e2e2] rounded-md mb-[100px]"
     >
       <div class="text-center mb-8">
@@ -8,126 +9,134 @@
       </div>
 
       <!-- Product Title -->
-      <div class="relative z-0 w-full mb-5">
+      <div class="w-full mb-1">
+        <label
+          for="title"
+          class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
+          >Title</label
+        >
         <input
+          v-model="newProduct.title"
           type="text"
-          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
+          class="py-[3px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
           placeholder=" "
           required
         />
-        <label
-          for="title"
-          class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
-          >Title</label
-        >
       </div>
 
       <!-- Product price -->
-      <div class="relative z-0 w-full mb-5">
-        <input
-          type="text"
-          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
-          placeholder=" "
-          required
-        />
+      <div class="w-full mb-1">
         <label
           for="price"
-          class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
+          class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
           >Price</label
         >
-      </div>
-      <!-- Product stock -->
-      <div class="relative z-0 w-full mb-5">
         <input
+          v-model="newProduct.price"
           type="text"
-          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
+          class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
           placeholder=" "
           required
         />
+      </div>
+      <!-- Product stock -->
+      <div class="w-full mb-2">
         <label
           for="stock"
-          class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
+          class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
           >Stock</label
         >
+        <input
+          v-model="newProduct.stock"
+          type="text"
+          class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
+          placeholder=" "
+          required
+        />
       </div>
 
       <!-- Product Brand -->
       <div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-5">
-          <input
-            type="text"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
-            placeholder=" "
-            required
-          />
+        <div class="w-full mb-1">
           <label
             for="brand"
-            class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
+            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
             >Brand</label
           >
-        </div>
-        <!-- Product Rating -->
-        <div class="relative z-0 w-full mb-5">
           <input
+            v-model="newProduct.brand"
             type="text"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
+            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
           />
+        </div>
+        <!-- Product Rating -->
+        <div class="w-full mb-1">
           <label
             for="rating"
-            class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
+            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
             >Rating</label
           >
+          <input
+            v-model="newProduct.rating"
+            type="text"
+            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
+            placeholder=" "
+            required
+          />
         </div>
       </div>
 
       <!-- Product category -->
       <div class="grid md:grid-cols-2 md:gap-6">
-        <div class="relative z-0 w-full mb-5">
+        <div class="w-full mb-1">
+          <label
+            for="category"
+            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
+            >Category</label
+          >
           <input
+            v-model="newProduct.category"
             type="text"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
+            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
           />
-          <label
-            for="category"
-            class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
-            >Category</label
-          >
         </div>
 
         <!-- Product Discount -->
-        <div class="relative z-0 w-full mb-5">
+        <div class="w-full mb-1">
+          <label
+            for="discountPercentage"
+            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
+            >Discount</label
+          >
           <input
+            v-model="newProduct.discountPercentage"
             type="text"
-            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
+            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
           />
-          <label
-            for="discountPercentage"
-            class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
-            >Discount</label
-          >
         </div>
       </div>
 
       <!-- Product Description -->
 
-      <div class="relative z-0 w-full mb-5">
+      <div class="w-full mb-5">
+        <label
+          for="description"
+          class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
+          >Description</label
+        >
         <textarea
+          v-model="newProduct.description"
           type="text"
-          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea] peer"
+          class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
           placeholder=" "
           required
         />
-        <label
-          for="description"
-          class="absolute text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 text-[20px]"
-          >Description</label
-        >
       </div>
 
       <button
@@ -137,55 +146,62 @@
         Enter Data
       </button>
     </form>
+
+
+
+
+    
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { collection, getDocs, onSnapshot, addDoc } from "firebase/firestore";
-
-import { db } from "../../../firebase";
-
-const Products = ref([]);
-
-onMounted(() => {
-//     const querySnapshot = await getDocs(collection(db, 'Products'));
-// querySnapshot.forEach((doc) => {
-//   console.log(doc.id, " => ", doc.data());
-
-// });
-
-  onSnapshot(collection(db, "Products"), (querySnapshot) => {
-    const ProductArray = [];
-    querySnapshot.forEach((doc) => {
-      const ProductVal = {
-        title: doc.data().title,
-        price: doc.data().price,
-        stock: doc.data().stock,
-        brand: doc.data().brand,
-        rating: doc.data().rating,
-        category: doc.data().category,
-        discountPercentage: doc.data().discountPercentage,
-        description: doc.data().description,
-      };
-      ProductArray.push(ProductVal);
-    });
-
-    Products.value = ProductArray;
-    console.log(Products.value);
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { useRouter } from "vue-router";
+import { db } from "../../../Firebase/FB-Database";
+const router = useRouter();
+// Get Data in Firebase store
+onMounted(async () => {
+  const querySnapshot = await getDocs(collection(db, "Products"));
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", "getdata from firebase store", doc.data());
   });
 });
 
+// Add Data in Firebase store
+const newProduct = ref({
+  title: "",
+  price: "",
+  stock: "",
+  brand: "",
+  rating: "",
+  category: "",
+  discountPercentage: "",
+  description: "",
+});
 
+const handleSubmit = async () => {
+  try {
+    const productCollection = collection(db, "Products");
+    const newProductDoc = await addDoc(productCollection, newProduct.value);
 
-// add data
-// const docRef = await addDoc(collection(db, "cities"), {
-//   name: "Tokyo",
-//   country: "Japan"
-// });
-// console.log("Document written with ID: ", docRef.id);
-
-
+    if (newProductDoc.id) {
+      console.log("New add product Id", newProductDoc.id);
+      router.push({ path: "/admin/products" });
+    }
+    // Clear the form after successful submission
+    newProduct.value = {
+      title: "",
+      price: "",
+      stock: "",
+      brand: "",
+      rating: "",
+      category: "",
+      discountPercentage: "",
+      description: "",
+    };
+  } catch (error) {
+    console.error("Error adding document:", error);
+  }
+};
 </script>
-
-<style scoped></style>

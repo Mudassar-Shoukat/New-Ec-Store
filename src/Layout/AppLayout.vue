@@ -1,7 +1,7 @@
 <template>
   <div>
     <header
-      class="bg-[white] fixed top-0 w-full  [box-shadow:0_3px_3px_rgb(237,_240,_239)] "
+      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]"
     >
       <slot name="header">
         <div class="border px-7">
@@ -15,7 +15,7 @@
               <!-- Home Button -->
               <button
                 type="button"
-                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out] "
+                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e524] rounded-[5px] border border-[#e6e5e5] hover:bg-gray-100 hover:text-black hover:[transition:0.3s_ease-in-out]"
                 @click="$router.push('/')"
               >
                 Home
@@ -64,7 +64,7 @@
                 <div style="text-align: right">
                   <button
                     @click="drawerVisible = true"
-                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out "
+                    class="py-4 px-1 relative border-2 border-transparent text-gray-800 rounded-full focus:outline-none focus:text-gray-500 transition duration-150 ease-in-out"
                     aria-label="Cart"
                   >
                     <svg
@@ -124,8 +124,8 @@
                     <CartItemVue :item="item" />
                   </div>
                   <!-- Sub total -->
-                  <div 
-                    class="m-[5px] rounded-lg border bg-[white] p-5 shadow w-[97%] "
+                  <div
+                    class="m-[5px] rounded-lg border bg-[white] p-5 shadow w-[97%]"
                   >
                     <hr class="my-4" />
 
@@ -162,9 +162,9 @@
     <main class="px-[6px] py-[16px] mt-[80px] bg-[white]">
       <slot> </slot>
     </main>
-    <footer class="bg-[#e9e5e5] px-[6px] py-[10px] ">
+    <!-- <footer class="bg-[#e9e5e5] px-[6px] py-[10px]">
       <slot name="footer">Footer </slot>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -186,7 +186,7 @@ const { user, userToken } = storeToRefs(authStore);
 onMounted(() => {
   let token = localStorage.getItem("userToken");
   let user = localStorage.getItem("user");
-// console.log("user",user);
+  // console.log("user",user);
   if (token && user) {
     let parsedUser = JSON.parse(user);
     authStore.setAuthUser(parsedUser);
@@ -198,11 +198,9 @@ const TotalPrice = computed(() => {
 });
 
 const logout = () => {
-console.log("click logout ");
+  console.log("click logout ");
 
-authStore.logout()
-
-
+  authStore.logout();
 };
 </script>
 <style scoped>
@@ -231,7 +229,7 @@ authStore.logout()
   z-index: 199;
   transition: opacity 0.2s;
 }
-.close:hover{
+.close:hover {
   background: rgb(240, 238, 238);
 }
 </style>
