@@ -10,6 +10,7 @@
       </div>
 
       <!-- Product Title -->
+      
       <div class="w-full mb-1">
         <label
           for="title"
@@ -142,33 +143,27 @@
 
       <button
         type="submit"
+        name="submit"
+      @click="handle"
         class="text-white bg-[#4c4fe7c7] hover:bg-[#4c4fe7e8] hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
       >
         Enter Data
       </button>
     </form>
   </div>
-  <!-- <ProductCreate :new-product="newProduct.value" /> -->
-<!-- <div v-for="new_prod in newProduct" :key="new_prod">
-  {{ new_prod.price  }}
-</div> -->
 
 </template>
 
 <script setup>
 
-// import ProductCreate from "./Product-create.vue";
+
 import { ref, onMounted, } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 import { db } from "../../../Firebase/FB-Database";
 const router = useRouter();
-// import ProductCreate from './Product-create.vue';
 
 
-  //  components: { ProductCreate }
-
-// Get Data in Firebase store
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
   querySnapshot.forEach((doc) => {
@@ -176,16 +171,15 @@ onMounted(async () => {
   });
 });
 
-// Add Data in Firebase store
 const newProduct = ref({
-  title: "aaaaa",
-  price: "aa",
-  stock: "aaaaaa",
-  brand: "eee",
-  rating: "eee",
-  category: "rr",
-  discountPercentage: "gg",
-  description: "hhhh",
+  title: "Itel S23",
+  price: "100",
+  stock: "available 12 product",
+  brand: "Itel",
+  rating: "4.5 stars",
+  category: "Electronics",
+  discountPercentage: "15%",
+  description: "Best Product",
 });
 
 const handleSubmit = async () => {
@@ -196,6 +190,7 @@ const handleSubmit = async () => {
     if (newProductDoc.id) {
       console.log("New add product Id", newProductDoc.id);
       router.push({ path: "/admin/products" });
+      
     }
     // Clear the form after successful submission
     newProduct.value = {
@@ -211,7 +206,8 @@ const handleSubmit = async () => {
   } catch (error) {
     console.error("Error adding document:", error);
   }
-};
+}; 
+ </script> 
 
 
 
@@ -220,4 +216,6 @@ const handleSubmit = async () => {
 
 
 
-</script>
+  
+
+   
