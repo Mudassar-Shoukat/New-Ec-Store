@@ -2,10 +2,11 @@
   <div>
     <form
       @submit.prevent="handleSubmit"
-      class="max-w-md mx-auto bg-[#b3b8bf1f] px-6 pt-10 pb-8 border-[1px] border-[#e4e2e2] rounded-md mb-[100px]"
+      class="max-w-md mx-auto bg-[#b3b8bf1f] px-6 pt-10 pb-8 border-[1px] border-[#d5d4d4] rounded-md mb-[100px]"
     >
+   
       <div class="text-center mb-8">
-        <h1 class="text-2xl font-semibold text-[#4c4fe7e1]">Product Detail</h1>
+        <h1 class="text-2xl font-semibold text-[#4c4fe7e1] underline">Product Detail</h1>
       </div>
 
       <!-- Product Title -->
@@ -141,25 +142,32 @@
 
       <button
         type="submit"
-        class="text-white bg-[#4c4fe7e1] hover:bg-[#4c4fe7cd] hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
+        class="text-white bg-[#4c4fe7c7] hover:bg-[#4c4fe7e8] hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
       >
         Enter Data
       </button>
     </form>
-
-
-
-
-    
   </div>
+  <!-- <ProductCreate :new-product="newProduct.value" /> -->
+<!-- <div v-for="new_prod in newProduct" :key="new_prod">
+  {{ new_prod.price  }}
+</div> -->
+
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+
+// import ProductCreate from "./Product-create.vue";
+import { ref, onMounted, } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 import { db } from "../../../Firebase/FB-Database";
 const router = useRouter();
+// import ProductCreate from './Product-create.vue';
+
+
+  //  components: { ProductCreate }
+
 // Get Data in Firebase store
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
@@ -170,14 +178,14 @@ onMounted(async () => {
 
 // Add Data in Firebase store
 const newProduct = ref({
-  title: "",
-  price: "",
-  stock: "",
-  brand: "",
-  rating: "",
-  category: "",
-  discountPercentage: "",
-  description: "",
+  title: "aaaaa",
+  price: "aa",
+  stock: "aaaaaa",
+  brand: "eee",
+  rating: "eee",
+  category: "rr",
+  discountPercentage: "gg",
+  description: "hhhh",
 });
 
 const handleSubmit = async () => {
@@ -204,4 +212,12 @@ const handleSubmit = async () => {
     console.error("Error adding document:", error);
   }
 };
+
+
+
+
+
+
+
+
 </script>
