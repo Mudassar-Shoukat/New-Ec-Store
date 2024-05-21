@@ -61,11 +61,12 @@
           </td>
           <!-- Edit Button -->
           <td class="border border-gray-300">
+
             <button @click="editProduct(product.id)"
 
               class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
             >
-              Edit
+              <router-link :to="{ path: '/admin/products/create' }">Edit</router-link>
             </button>
           </td>
           <!-- Delete Button -->
@@ -123,6 +124,7 @@ const products = ref([]);
 const showConfirmationPopup = ref(false);
 let productIdToDelete = null;
 
+// onMounted hook or default value show
 async function fetchProducts() {
   try {
     const querySnapshot = await getDocs(collection(db, "Products"));
@@ -136,18 +138,18 @@ async function fetchProducts() {
 }
 
 
-
+// Edit produt function
 const editProduct = (id) => {
   console.log("edit product with id", id);
-  // code to edit product with given id
+  
 };
-
+// Delete show Popup 
 const deleteProduct = (id) => {
   console.log("delete product with id", id);
   productIdToDelete = id;
   showConfirmationPopup.value = true;
 };
-
+// click confirmDelete button data delete in firebase store
 const confirmDelete = async () => {
   console.log("confirm delete");
   try {

@@ -172,14 +172,14 @@ onMounted(async () => {
 });
 
 const newProduct = ref({
-  title: "Itel S23",
-  price: "100",
-  stock: "available 12 product",
-  brand: "Itel",
-  rating: "4.5 stars",
-  category: "Electronics",
-  discountPercentage: "15%",
-  description: "Best Product",
+  title: "",
+  price: "",
+  stock: "",
+  brand: "",
+  rating: "",
+  category: "",
+  discountPercentage: "",
+  description: " ",
 });
 
 const handleSubmit = async () => {
