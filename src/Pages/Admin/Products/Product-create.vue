@@ -61,7 +61,8 @@
           </td>
           <!-- Edit Button -->
           <td class="border border-gray-300">
-            <button
+            <button @click="editProduct(product.id)"
+
               class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
             >
               Edit
@@ -70,7 +71,7 @@
           <!-- Delete Button -->
           <td class="border border-gray-300">
             <button
-              @click="Delete"
+            @click="deleteProduct(product.id)"
               class="bg-slate-200 px-[20px] py-[4px] rounded-[8px] text-[red] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
             >
               Delete
@@ -104,9 +105,9 @@
         </button>
         <button
         @click="confirmDelete"
-          class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+          class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 hover:underline"
         >
-          Delete
+          Confirm Delete
         </button>
       </div>
     </div>
@@ -120,6 +121,7 @@ import { db } from "../../../Firebase/FB-Database";
 
 const products = ref([]);
 const showConfirmationPopup = ref(false);
+let productIdToDelete = null;
 
 async function fetchProducts() {
   try {
@@ -133,17 +135,30 @@ async function fetchProducts() {
   }
 }
 
-const Delete = () => {
-  console.log("delete");
 
+
+const editProduct = (id) => {
+  console.log("edit product with id", id);
+  // code to edit product with given id
+};
+
+const deleteProduct = (id) => {
+  console.log("delete product with id", id);
+  productIdToDelete = id;
   showConfirmationPopup.value = true;
 };
 
-
-const confirmDelete=()=>{
-  console.log("confirm Delete");
-}
-
+const confirmDelete = async () => {
+  console.log("confirm delete");
+  try {
+    await deleteDoc(doc(db, "Products", productIdToDelete));
+    console.log("Product deleted successfully");
+    showConfirmationPopup.value = false;
+    fetchProducts();
+  } catch (error) {
+    console.error("Error deleting product:", error);
+  }
+};
 
 onMounted(fetchProducts);
 </script>
