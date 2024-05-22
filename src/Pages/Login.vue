@@ -4,7 +4,7 @@
   >
     <div class="w-full">
       <div class="text-center">
-        <h1 class="text-3xl font-semibold text-gray-900">Sign in</h1>
+        <h1 class="text-3xl font-semibold text-[#7165c5]">Sign in</h1>
         <p class="mt-2 text-gray-500">Sign in below to access your account</p>
       </div>
       <div class="mt-5">
@@ -44,7 +44,7 @@
           <div class="my-6">
             <button
               type="submit"
-              class="w-full rounded-md bg-[#19134b] py-2 text-white hover:bg-slate-800 hover:underline"
+              class="w-full rounded-md bg-[#8b7cf1] py-2 text-white hover:bg-[#7668cf] hover:underline"
             >
               Sign In
             </button>

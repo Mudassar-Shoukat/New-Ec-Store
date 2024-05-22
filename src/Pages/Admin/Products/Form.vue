@@ -4,13 +4,14 @@
       @submit.prevent="handleSubmit"
       class="max-w-md mx-auto bg-[#b3b8bf1f] px-6 pt-10 pb-8 border-[1px] border-[#d5d4d4] rounded-md mb-[100px]"
     >
-   
       <div class="text-center mb-8">
-        <h1 class="text-2xl font-semibold text-[#4c4fe7e1] underline">Product Detail</h1>
+        <h1 class="text-2xl font-semibold text-[#4c4fe7e1] underline">
+          Product Detail
+        </h1>
       </div>
 
       <!-- Product Title -->
-      
+
       <div class="w-full mb-1">
         <label
           for="title"
@@ -144,26 +145,22 @@
       <button
         type="submit"
         name="submit"
-      @click="handle"
         class="text-white bg-[#4c4fe7c7] hover:bg-[#4c4fe7e8] hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
       >
         Enter Data
       </button>
     </form>
   </div>
-
 </template>
 
 <script setup>
-
-
-import { ref, onMounted, } from "vue";
+import { ref, onMounted } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 import { db } from "../../../Firebase/FB-Database";
 const router = useRouter();
 
-
+// const isEdit = ref(false);
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
   querySnapshot.forEach((doc) => {
@@ -190,7 +187,6 @@ const handleSubmit = async () => {
     if (newProductDoc.id) {
       console.log("New add product Id", newProductDoc.id);
       router.push({ path: "/admin/products" });
-      
     }
     // Clear the form after successful submission
     newProduct.value = {
@@ -206,16 +202,5 @@ const handleSubmit = async () => {
   } catch (error) {
     console.error("Error adding document:", error);
   }
-}; 
- </script> 
-
-
-
-
-
-
-
-
-  
-
-   
+};
+</script>

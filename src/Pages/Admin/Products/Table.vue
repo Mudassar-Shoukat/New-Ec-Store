@@ -61,18 +61,20 @@
           </td>
           <!-- Edit Button -->
           <td class="border border-gray-300">
-
-            <button @click="editProduct(product.id)"
-
+            <button
+              @click="editProduct(product.id)"
               class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
             >
-              <router-link :to="{ path: '/admin/products/create' }">Edit</router-link>
+            <router-link :to="{ path: '/admin/products/update/:id', query: { product_id: product.id } }">
+              Edit
+            </router-link>
+              
             </button>
           </td>
           <!-- Delete Button -->
           <td class="border border-gray-300">
             <button
-            @click="deleteProduct(product.id)"
+              @click="deleteProduct(product.id)"
               class="bg-slate-200 px-[20px] py-[4px] rounded-[8px] text-[red] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
             >
               Delete
@@ -105,8 +107,8 @@
           Cancel
         </button>
         <button
-        @click="confirmDelete"
-          class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 hover:underline"
+          @click="confirmDelete"
+          class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 border border-[red]"
         >
           Confirm Delete
         </button>
@@ -117,7 +119,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, query } from "firebase/firestore";
 import { db } from "../../../Firebase/FB-Database";
 
 const products = ref([]);
@@ -137,13 +139,11 @@ async function fetchProducts() {
   }
 }
 
-
 // Edit produt function
 const editProduct = (id) => {
   console.log("edit product with id", id);
-  
 };
-// Delete show Popup 
+// Delete show Popup
 const deleteProduct = (id) => {
   console.log("delete product with id", id);
   productIdToDelete = id;

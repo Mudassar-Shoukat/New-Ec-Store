@@ -8,6 +8,32 @@
   />
   <div v-if="product.id">
     <div class="container">
+      <!-- Short Product images or releated images -->
+      <section
+        class="w-[180px] h-[440px] m-[10px] p-1 flex flex-wrap text-center rounded-[5px] border-[1px] overflow-hidden bg-[#f6f4f4] border-zinc-300 ]"
+      >
+        <img
+          :src="product.images[1]"
+          :alt="product.title"
+          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
+        />
+        <img
+          :src="product.images[2]"
+          :alt="product.title"
+          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
+        />
+        <img
+          :src="product.images[3]"
+          :alt="product.title"
+          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
+        />
+        <img
+          :src="product.images[4]"
+          :alt="product.title"
+          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
+        />
+      </section>
+
       <!-- Single Product image -->
       <section
         class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#f6f4f4] border-zinc-300 hover:cursor-pointer hover:scale-[1.02] hover:[transition:0.3s_ease-in-out]"
@@ -15,40 +41,15 @@
         <img
           :src="product.images[0]"
           :alt="product.title"
-          class="h-[375px] w-[282px] m-[10px] flex"
+          class="h-[375px] w-[282px] m-[10px] flex border"
         />
         <div class="h-18 w-[100%]">
-          <h1 class="text-lg text-[#e84409] font-medium">
+          <h1 class="text-lg text-[#84838e] font-medium">
             {{ product.title }}
           </h1>
         </div>
       </section>
 
-      <!-- Short Product images or releated images -->
-      <section
-        class="w-[180px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] overflow-hidden bg-[#f2f0f0] border-zinc-300 ]"
-      >
-        <img
-          :src="product.images[1]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out]"
-        />
-        <img
-          :src="product.images[2]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out]"
-        />
-        <img
-          :src="product.images[3]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out]"
-        />
-        <img
-          :src="product.images[4]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out]"
-        />
-      </section>
       <!-- Product Discription or product detail -->
       <section
         class="w-[400px] h-full m-[10px] flex flex-wrap text-center rounded-[5px] overflow-hidden bg-[#f6f4f4]"
@@ -71,7 +72,7 @@
           <button
             @click="addToCart"
             type="button"
-            class="text-white bg-[#12123b] hover:bg-[#26266b] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2"
+            class="text-white bg-[#7272dd] hover:bg-[#6868ca] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-[30px] py-2.5 text-center inline-flex items-center me-2"
           >
             <svg
               class="w-3.5 h-3.5 me-2"
@@ -156,6 +157,10 @@ onMounted(() => {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  border-radius: 20px;
+  border: 2px solid rgb(239, 229, 229);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .checked {

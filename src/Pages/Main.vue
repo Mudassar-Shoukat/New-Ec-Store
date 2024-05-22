@@ -1,19 +1,20 @@
 <template>
   <!-- search bar  -->
-  <div class="w-[500px] mx-auto mb-3 flex" id="outer">
+  <div class="w-[502px] mx-auto mb-3 flex p-1 border rounded-[30px] border-[#e0dddd]" id="outer">
     <input
       id="input"
-      class="w-full py-2 px-6 border rounded-l-[20px] outline-[#eeecec]"
+      class="w-full py-2 px-6 border rounded-l-[20px] bg-[white] border-[#CCCCCC]"
       type="text"
       v-model="searchTerm"
       @keyup="searchProduct"
       placeholder="Search... "
+
     />
 
     <button
       id="button"
       v-if="searchTerm"
-      class="w-10 inset-y-0 p-2 flex items-center text-gray-700 border-y-[1px]"
+      class="w-10 inset-y-0 p-2 flex items-center text-gray-700 border-y-[1px] border-[#CCCCCC]"
       @click="clear"
     >
       <svg
@@ -33,7 +34,7 @@
     </button>
 
     <button
-      class="inset-y-0 right-0 flex items-center px-5 text-gray-700 bg-gray-100 border border-gray-300 rounded-r-[20px] hover:bg-gray-200 outline-[#f0eaea]"
+      class="inset-y-0 right-0 flex items-center px-5 text-gray-700 bg-gray-100 border border-[#CCCCCC] rounded-r-[20px] hover:bg-gray-200"
       @click="searchProduct"
     >
       <svg
@@ -56,7 +57,7 @@
     <div
       v-for="product in productList"
       :key="product.id"
-      class="w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#f6f4f4] border-zinc-300 hover:cursor-pointer hover:border-[#808383]"
+      class="w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden bg-[#f6f4f4] hover:cursor-pointer hover:border-[#c5d0d0]"
     >
       <router-link
         :to="{
@@ -107,7 +108,7 @@ const fetchProducts = async () => {
 onMounted(fetchProducts);
 
 function searchProduct() {
-// document.getElementById('outer').style.outlineColor='red'
+  // document.getElementById('outer').style.outlineColor='red'
   if (timer.value) {
     clearTimeout(timer.value);
     // coplete
@@ -129,6 +130,8 @@ function clear() {
     console.log("search term is clear");
   }
 }
+
+ 
 </script>
 
 <style scoped>

@@ -2,8 +2,9 @@ import { createWebHistory, createRouter } from "vue-router";
 import Main from "./Pages/Main.vue";
 import ProductDetail from "./Pages/SingleProductDetail.vue";
 import Login from "./Pages/Login.vue";
-import ProductIndex from "./Pages/Admin/Products/Product-create.vue";
+import ProductIndex from "./Pages/Admin/Products/Table.vue";
 import Form from "./Pages/Admin/Products/Form.vue";
+import Update from "./Pages/Admin/Products/Update.vue";
 
 const routes = [
   {
@@ -22,15 +23,21 @@ const routes = [
     path: "/Login",
     component: Login,
   },
+    {
+    name: "Form",
+    path: "/admin/products/create",
+    component: Form,
+  },
   {
     name: "admin.product.index",
     path: "/admin/products",
     component: ProductIndex,
   },
+
   {
-    name: "Form",
-    path: "/admin/products/create",
-    component: Form,
+    name: "Update",
+    path: "/admin/products/update/:id",
+    component: Update,
   },
 ];
 
