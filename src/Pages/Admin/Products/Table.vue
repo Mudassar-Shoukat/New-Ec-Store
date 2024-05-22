@@ -11,13 +11,13 @@
     </button>
   </div>
 
-  <!-- Table outer div -->
+  <!-- ---Table outer div--- -->
   <div
     class="overflow-x-auto sm:rounded-lg border m-8"
     v-if="products.length > 0"
   >
     <table class="w-full text-sm text-center text-gray-500 border bg-[#F1F5F9]">
-      <!-- Table Header -->
+      <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
         <tr class="bg-[#e9ecf0]">
           <th class="px-6 py-3">Title</th>
@@ -35,43 +35,150 @@
       <!-- Table Body -->
       <tbody>
         <tr v-for="product in products" :key="product.id">
-          <td class="px-4 py-2 border border-gray-300">
+          <!-- ---Add Products---  -->
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.title }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.price }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.stock }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.brand }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.rating }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.category }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.discountPercentage }}
           </td>
-          <td class="px-4 py-2 border border-gray-300">
+
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
             {{ product.description }}
           </td>
-          <!-- Edit Button -->
-          <td class="border border-gray-300">
+          <!-- ---Update Products---  -->
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.title"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.price"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.stock"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.brand"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.rating"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.category"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.discountPercentage"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.description"
+              type="text"
+              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+            />
+          </td>
+          <!-- ---Edit Button--- -->
+
+          <td
+            class="border border-gray-300"
+            v-if="product.id !== editingProductId"
+          >
             <button
-              @click="editProduct(product.id)"
               class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
+              @click="editProduct(product.id)"
             >
-            <router-link :to="{ path: '/admin/products/update/:id', query: { product_id: product.id } }">
               Edit
-            </router-link>
-              
             </button>
           </td>
-          <!-- Delete Button -->
+
+          <!-- ---Update Button--- -->
+          <td v-if="editingProduct && product.id === editingProductId">
+            <button
+              @click="updateProduct(product)"
+              class="bg-blue-600 px-[15px] py-[4px] rounded-[4px] text-[white] border border-[#ccd1d8] hover:underline hover:bg-blue-700"
+            >
+              Update
+            </button>
+          </td>
+
+          <!-- ---Delete Button--- -->
           <td class="border border-gray-300">
             <button
               @click="deleteProduct(product.id)"
@@ -88,8 +195,7 @@
     <p class="text-center text-[red]">No products found...</p>
   </div>
 
-  <!-- Popup show clik delete button -->
-
+  <!-- ---Popup show clik delete button---  -->
   <div
     v-if="showConfirmationPopup"
     class="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center"
@@ -115,16 +221,19 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { collection, getDocs, deleteDoc, doc, query } from "firebase/firestore";
+import {collection, getDocs,deleteDoc,doc,updateDoc, } from "firebase/firestore";
 import { db } from "../../../Firebase/FB-Database";
 
 const products = ref([]);
 const showConfirmationPopup = ref(false);
 let productIdToDelete = null;
+const editingProduct = ref(false);
+const editingProductId = ref("");
 
 // onMounted hook or default value show
 async function fetchProducts() {
@@ -140,9 +249,24 @@ async function fetchProducts() {
 }
 
 // Edit produt function
+
 const editProduct = (id) => {
-  console.log("edit product with id", id);
+  editingProduct.value = true;
+  editingProductId.value = id;
 };
+// Uupdate Product
+const updateProduct = async (product) => {
+  try {
+    await updateDoc(doc(db, "Products", product.id), product);
+    editingProduct.value = false;
+    editingProductId.value = null;
+    console.log("Product updated successfully");
+  } catch (error) {
+    console.error("Error updating product:", error);
+  }
+}; 
+
+
 // Delete show Popup
 const deleteProduct = (id) => {
   console.log("delete product with id", id);
@@ -161,6 +285,7 @@ const confirmDelete = async () => {
     console.error("Error deleting product:", error);
   }
 };
+
 
 onMounted(fetchProducts);
 </script>

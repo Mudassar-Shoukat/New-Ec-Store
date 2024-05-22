@@ -4,7 +4,6 @@ import ProductDetail from "./Pages/SingleProductDetail.vue";
 import Login from "./Pages/Login.vue";
 import ProductIndex from "./Pages/Admin/Products/Table.vue";
 import Form from "./Pages/Admin/Products/Form.vue";
-import Update from "./Pages/Admin/Products/Update.vue";
 
 const routes = [
   {
@@ -23,7 +22,7 @@ const routes = [
     path: "/Login",
     component: Login,
   },
-    {
+  {
     name: "Form",
     path: "/admin/products/create",
     component: Form,
@@ -32,12 +31,6 @@ const routes = [
     name: "admin.product.index",
     path: "/admin/products",
     component: ProductIndex,
-  },
-
-  {
-    name: "Update",
-    path: "/admin/products/update/:id",
-    component: Update,
   },
 ];
 
