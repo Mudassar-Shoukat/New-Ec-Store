@@ -20,16 +20,16 @@
       <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
         <tr class="bg-[#e9ecf0]">
-          <th class="px-6 py-3">Title</th>
-          <th class="px-6 py-3">Price</th>
-          <th class="px-6 py-3">Stock</th>
-          <th class="px-6 py-3">Brand</th>
-          <th class="px-6 py-3">Rating</th>
-          <th class="px-6 py-3">Category</th>
-          <th class="px-6 py-3">Discount</th>
-          <th class="px-6 py-3">Discription</th>
-          <th class="px-6 py-3">Edit</th>
-          <th class="px-6 py-3">Delete</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Title</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Price</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Stock</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Brand</th>
+          <th class="px-6 py-3border border-[#e1dcdc]">Rating</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Category</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Discount</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Discription</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Edit</th>
+          <th class="px-6 py-3 border border-[#e1dcdc]">Delete</th>
         </tr>
       </thead>
       <!-- Table Body -->
@@ -96,7 +96,7 @@
             <input
               v-model="product.title"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
 
@@ -104,7 +104,7 @@
             <input
               v-model="product.price"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
 
@@ -112,7 +112,7 @@
             <input
               v-model="product.stock"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
 
@@ -120,7 +120,7 @@
             <input
               v-model="product.brand"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
 
@@ -128,7 +128,7 @@
             <input
               v-model="product.rating"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
 
@@ -136,7 +136,7 @@
             <input
               v-model="product.category"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
 
@@ -144,14 +144,14 @@
             <input
               v-model="product.discountPercentage"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
           <td v-if="editingProduct && product.id === editingProductId">
             <input
               v-model="product.description"
               type="text"
-              class="w-full outline-none border py-1 bg-[#e3e5ea] text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
           <!-- ---Edit Button--- -->
@@ -164,7 +164,13 @@
               class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
               @click="editProduct(product.id)"
             >
-              Edit
+           
+              <router-link
+                :to="{
+                  path: '/admin/products',
+                  query: { product_id: product.id },
+                }"
+              >    Edit </router-link>
             </button>
           </td>
 
@@ -172,7 +178,7 @@
           <td v-if="editingProduct && product.id === editingProductId">
             <button
               @click="updateProduct(product)"
-              class="bg-blue-600 px-[15px] py-[4px] rounded-[4px] text-[white] border border-[#ccd1d8] hover:underline hover:bg-blue-700"
+              class="bg-green-500 px-[15px] py-[4px] rounded-[4px] text-[white] border border-[#ccd1d8] hover:underline hover:bg-green-600"
             >
               Update
             </button>
@@ -221,12 +227,17 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import {collection, getDocs,deleteDoc,doc,updateDoc, } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../../Firebase/FB-Database";
 
 const products = ref([]);
@@ -264,8 +275,7 @@ const updateProduct = async (product) => {
   } catch (error) {
     console.error("Error updating product:", error);
   }
-}; 
-
+};
 
 // Delete show Popup
 const deleteProduct = (id) => {
@@ -285,7 +295,6 @@ const confirmDelete = async () => {
     console.error("Error deleting product:", error);
   }
 };
-
 
 onMounted(fetchProducts);
 </script>

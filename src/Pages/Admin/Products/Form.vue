@@ -6,7 +6,7 @@
     >
       <div class="text-center mb-8">
         <h1 class="text-2xl font-semibold text-[#4c4fe7e1] underline">
-          Product Detail
+         Add New Product 
         </h1>
       </div>
 
