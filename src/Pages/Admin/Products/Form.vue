@@ -6,7 +6,7 @@
     >
       <div class="text-center mb-8">
         <h1 class="text-2xl font-semibold text-[#4c4fe7e1] underline">
-         Add New Product 
+          Add New Product
         </h1>
       </div>
 
@@ -36,11 +36,16 @@
         >
         <input
           v-model="newProduct.price"
-          type="text"
           class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
+          type="number"
           placeholder=" "
           required
+          min="0"
+          @input="checkPrice"
         />
+        <span v-if="price_error" class="text-red-500 text-sm"
+          >Please enter a positive value for price</span
+        >
       </div>
       <!-- Product stock -->
       <div class="w-full mb-2">
@@ -83,11 +88,16 @@
           >
           <input
             v-model="newProduct.rating"
-            type="text"
+            type="number"
             class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
+            min="0"
+            @input="checkRating"
           />
+          <span v-if="Rating_error" class="text-red-500 text-sm"
+            >Enter maximum of five stars.</span
+          >
         </div>
       </div>
 
@@ -121,7 +131,12 @@
             class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
+            min="0"
+            @input="checkPercentage"
           />
+          <span v-if="Percentage_error" class="text-red-500 text-sm"
+            >Enter min 0 and max 100
+          </span>
         </div>
       </div>
 
@@ -167,6 +182,39 @@ onMounted(async () => {
     console.log(doc.id, " => ", "getdata from firebase store", doc.data());
   });
 });
+
+// check price is greater than zero
+let price_error = false;
+const checkPrice = () => {
+  if (newProduct.value.price < 0) {
+    price_error = true;
+  } else {
+    price_error = false;
+  }
+};
+
+// check Rating is greater than 5
+let Rating_error = false;
+const checkRating = () => {
+  if (newProduct.value.rating > 5) {
+    Rating_error = true;
+  } else {
+    Rating_error = false;
+  }
+};
+
+// check Percentage is greater than 0 and less than is 100
+let Percentage_error = false;
+const checkPercentage = () => {
+  if (
+    newProduct.value.discountPercentage > 0 ||
+    newProduct.value.discountPercentage < 100
+  ) {
+    Percentage_error = true;
+  } else {
+    Percentage_error = false;
+  }
+};
 
 const newProduct = ref({
   title: "",

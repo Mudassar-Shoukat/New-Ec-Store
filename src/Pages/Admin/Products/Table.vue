@@ -164,13 +164,14 @@
               class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
               @click="editProduct(product.id)"
             >
-           
               <router-link
                 :to="{
                   path: '/admin/products',
                   query: { product_id: product.id },
                 }"
-              >    Edit </router-link>
+              >
+                Edit
+              </router-link>
             </button>
           </td>
 
@@ -231,13 +232,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import {
-  collection,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import {collection, getDocs,deleteDoc,doc, updateDoc,} from "firebase/firestore";
 import { db } from "../../../Firebase/FB-Database";
 
 const products = ref([]);

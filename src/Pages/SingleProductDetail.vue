@@ -8,35 +8,12 @@
   />
   <div v-if="product.id">
     <div class="container">
-      <!-- Short Product images or releated images -->
-      <section
-        class="w-[180px] h-[440px] m-[10px] p-1 flex flex-wrap text-center rounded-[5px] border-[1px] overflow-hidden bg-[#f6f4f4] border-zinc-300 ]"
-      >
-        <img
-          :src="product.images[1]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
-        />
-        <img
-          :src="product.images[2]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
-        />
-        <img
-          :src="product.images[3]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
-        />
-        <img
-          :src="product.images[4]"
-          :alt="product.title"
-          class="h-[108px] w-[197px] p-1 flex [transition:0.3s_ease-in-out] hover:cursor-pointer hover:scale-[1.09] hover:[transition:0.3s_ease-in-out] border"
-        />
-      </section>
+  
+     
 
       <!-- Single Product image -->
       <section
-        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#f6f4f4] border-zinc-300 hover:cursor-pointer hover:scale-[1.02] hover:[transition:0.3s_ease-in-out]"
+        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-zinc-300 hover:cursor-pointer hover:scale-[1.02] hover:[transition:0.3s_ease-in-out]"
       >
         <img
           :src="product.images[0]"
