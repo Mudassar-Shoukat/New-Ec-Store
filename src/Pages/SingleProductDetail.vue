@@ -6,7 +6,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <div v-if="product.id">
+  <div v-if="product.value">
     <div class="container">
   
      
@@ -16,13 +16,12 @@
         class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-gray-300 hover:cursor-pointer  hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
       >
         <img
-          :src="product.images[0]"
-          :alt="product.title"
+        :src="product.value.images" :alt="product.value.title"
           class="h-[350px] w-[282px] m-[10px] flex border bg-gray-50 border-gray-300"
         />
         <div class="h-18 w-[100%]">
           <h1 class="text-lg text-[#e34f32] font-medium  border border-[#d8cbcb] mx-2 rounded-2xl bg-gray-100">
-            {{ product.title }}
+            {{ product.value.title }}
           </h1>
         </div>
       </section>
@@ -34,14 +33,14 @@
         <h1
           class="text-lg text-[#b15331] font-medium h-[35px] w-full p-1 flex bg-[white]"
         >
-          {{ product.brand }} Brand
+          {{ product.value.brand }} Brand
         </h1>
         <div class="h-[35px] w-full p-1 flex bg-[white]">
           <p class="text-[#2b1710] w-[140px]">
-            Discount: {{ product.discountPercentage }}%
+            Discount: {{ product.value.discountPercentage }}%
           </p>
           <h1 class="text-[#3b2d8d] w-[200px] text-lg font-medium text-left">
-            RS: ${{ product.price }}
+            RS: ${{ product.value.price }}
           </h1>
         </div>
 
@@ -67,12 +66,12 @@
         </div>
         <div class="h-[35px] w-full p-1 flex bg-[white]">
           <p class="text-lg underline text-[#686565]">
-            Product Available: {{ product.stock }}
+            Product Available: {{ product.value.stock }}
           </p>
         </div>
         <div class="h-[35px] w-full p-1 flex bg-[white]">
           <p class="text-[#97722e] w-[50px] text-2xl font-medium">
-            {{ product.rating }}
+            {{ product.value.rating }}
           </p>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -82,7 +81,7 @@
         </div>
 
         <div class="w-full p-1 flex bg-[white]">
-          <p class="text-left">{{ product.description }}</p>
+          <p class="text-left">{{ product.value.description }}</p>
         </div>
       </section>
     </div>
@@ -91,15 +90,17 @@
 
 <script setup>
 import axios from "axios";
-import { UseCartStore } from "../Store";
-import { storeToRefs } from "pinia";
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
 
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { collection, getDoc, doc } from 'firebase/firestore';
+import { db } from '../Firebase/FB-Database';
+import { UseCartStore } from '../Store';
+import { storeToRefs } from 'pinia';
 const cartStore = UseCartStore();
 const { AddtoCart } = storeToRefs(cartStore);
-const product = ref("");
-const route = useRoute();
+// const product = ref("");
+// const route = useRoute();
 
 const addToCart = () => {
   cartStore.AddtoCart({
@@ -109,21 +110,31 @@ const addToCart = () => {
   });
 };
 
-onMounted(() => {
-  const productId = route.params.id;
 
+const product = ref("");
+const route = useRoute();
+
+async function fetchProduct() {
+  const productId = route.params.id;
   if (productId) {
-    axios
-      .get(`https://dummyjson.com/products/${productId}`)
-      .then((response) => {
-        if (response.data) {
-          product.value = response.data;
-        } else {
-          console.error("Error fetching product details:", response.data);
-        }
-      });
+   
+    try {
+      const docRef = doc(db, 'Products', productId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap) {
+        product.value = docSnap.data();
+      } else {
+        console.error('Product not found:', productId);
+      }
+    } catch (error) {
+      console.error('Error fetching product:', error);
+    }
   }
-});
+}
+
+onMounted(fetchProduct);
+
 </script>
 
 <style scoped>
