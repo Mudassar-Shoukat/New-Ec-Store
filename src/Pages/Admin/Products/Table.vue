@@ -20,6 +20,8 @@
       <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
         <tr class="bg-[#e9ecf0]">
+     
+
           <th class="px-6 py-3 border border-[#e1dcdc]">Title</th>
           <th class="px-6 py-3 border border-[#e1dcdc]">Price</th>
           <th class="px-6 py-3 border border-[#e1dcdc]">Stock</th>
@@ -36,13 +38,13 @@
       <tbody>
         <tr v-for="product in products" :key="product.id">
           <!-- ---Add Products---  -->
+         
           <td
             v-if="product.id !== editingProductId"
             class="px-4 py-2 border border-gray-300"
           >
             {{ product.title }}
           </td>
-
           <td
             v-if="product.id !== editingProductId"
             class="px-4 py-2 border border-gray-300"

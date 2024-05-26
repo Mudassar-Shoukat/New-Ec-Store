@@ -13,15 +13,15 @@
 
       <!-- Single Product image -->
       <section
-        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-zinc-300 hover:cursor-pointer hover:scale-[1.02] hover:[transition:0.3s_ease-in-out]"
+        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-gray-300 hover:cursor-pointer  hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
       >
         <img
           :src="product.images[0]"
           :alt="product.title"
-          class="h-[375px] w-[282px] m-[10px] flex border"
+          class="h-[350px] w-[282px] m-[10px] flex border bg-gray-50 border-gray-300"
         />
         <div class="h-18 w-[100%]">
-          <h1 class="text-lg text-[#84838e] font-medium">
+          <h1 class="text-lg text-[#e34f32] font-medium  border border-[#d8cbcb] mx-2 rounded-2xl bg-gray-100">
             {{ product.title }}
           </h1>
         </div>
@@ -40,7 +40,7 @@
           <p class="text-[#2b1710] w-[140px]">
             Discount: {{ product.discountPercentage }}%
           </p>
-          <h1 class="text-[#3b2d8d] w-[90px] text-lg font-medium">
+          <h1 class="text-[#3b2d8d] w-[200px] text-lg font-medium text-left">
             RS: ${{ product.price }}
           </h1>
         </div>
@@ -128,14 +128,14 @@ onMounted(() => {
 
 <style scoped>
 .container {
-  max-width: 1300px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid rgb(239, 229, 229);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

@@ -140,6 +140,10 @@
         </div>
       </div>
 
+
+   
+
+
       <!-- Product Description -->
 
       <div class="w-full mb-5">
@@ -219,6 +223,7 @@ const checkPercentage = () => {
 const newProduct = ref({
   title: "",
   price: "",
+
   stock: "",
   brand: "",
   rating: "",
