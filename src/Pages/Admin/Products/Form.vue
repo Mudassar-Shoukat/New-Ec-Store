@@ -88,7 +88,7 @@
           >
           <input
             v-model="newProduct.rating"
-            type="number"
+            type="float"
             class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
@@ -135,14 +135,30 @@
             @input="checkPercentage"
           />
           <span v-if="Percentage_error" class="text-red-500 text-sm"
-            >Enter min 0 and max 100
+            >Enter between 0 to 100
           </span>
         </div>
       </div>
 
 
-   
 
+    <!-- Product image -->
+    <div class="w-full mb-1">
+          <label
+            for="discountPercentage"
+            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
+            >Paste image url</label
+          >
+          <input
+            v-model="newProduct.image"
+            type="text"
+            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
+            placeholder=" "
+            required
+          
+          />
+       
+        </div>
 
       <!-- Product Description -->
 
@@ -229,6 +245,7 @@ const newProduct = ref({
   rating: "",
   category: "",
   discountPercentage: "",
+  image:"",
   description: " ",
 });
 

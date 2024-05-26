@@ -1,6 +1,9 @@
 <template>
   <!-- search bar  -->
-  <div class="w-[502px] mx-auto mb-3 flex p-1 border rounded-[30px] border-[#e0dddd]" id="outer">
+  <div
+    class="w-[502px] mx-auto mb-3 flex p-1 border rounded-[30px] border-[#e0dddd]"
+    id="outer"
+  >
     <input
       id="input"
       class="w-full py-2 px-6 border rounded-l-[20px] bg-[white] border-[#CCCCCC]"
@@ -8,7 +11,6 @@
       v-model="searchTerm"
       @keyup="searchProduct"
       placeholder="Search... "
-
     />
 
     <button
@@ -53,9 +55,9 @@
   </div>
 
   <!-- product list  -->
-  <div class="flex flex-wrap justify-center items-center w-full ">
+  <div class="flex flex-wrap justify-center items-center w-full">
     <div
-      v-for="product in productList"
+      v-for="product in products"
       :key="product.id"
       class="w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden bg-gray-100 hover:cursor-pointer hover:border-[#c5d0d0] border-gray-300"
     >
@@ -66,11 +68,11 @@
         }"
       >
         <img
-          :src="product.images[0]"
+          :src="product.image"
           :alt="product.title"
           class="h-[345px] w-[282px] m-[10px] flex bg-gray-50 border border-gray-300"
         />
-        <div class="h-28 w-[100%]  ">
+        <div class="h-28 w-[100%]">
           <h1 class="text-lg text-[#e84409] font-medium">
             {{ product.title }}
           </h1>
@@ -85,30 +87,28 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../Firebase/FB-Database";
+
 const products = ref([]);
 
 const searchTerm = ref("");
 const timer = ref(0);
 
-const productList = computed(() => {
-  return products.value.products;
-});
-
-const fetchProducts = async () => {
+async function fetchProducts() {
   try {
-    const response = await axios.get("https://dummyjson.com/products");
-    products.value = response.data;
+    const querySnapshot = await getDocs(collection(db, "Products"));
+    products.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
   } catch (error) {
     console.error("Error fetching products:", error);
   }
-};
-
-onMounted(fetchProducts);
+}
 
 function searchProduct() {
-  // document.getElementById('outer').style.outlineColor='red'
   if (timer.value) {
     clearTimeout(timer.value);
     // coplete
@@ -116,13 +116,12 @@ function searchProduct() {
     timer.value = null;
   }
   timer.value = setTimeout(() => {
-    products.value.products = products.value.products.filter((product) => {
+    products.value = products.value.filter((product) => {
       return product.title.toLowerCase().includes(searchTerm.value);
     });
   }, 800);
-  // console.log("product id", products.value.product.id);
 }
-
+// clear data
 function clear() {
   searchTerm.value = "";
   if (searchTerm.value === "") {
@@ -131,7 +130,7 @@ function clear() {
   }
 }
 
- 
+onMounted(fetchProducts);
 </script>
 
 <style scoped>

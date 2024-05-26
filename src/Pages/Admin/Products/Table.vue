@@ -20,6 +20,7 @@
       <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
         <tr class="bg-[#e9ecf0]">
+          <th class="py-3 border border-[#e1dcdc] ">Image</th>
      
 
           <th class="px-6 py-3 border border-[#e1dcdc]">Title</th>
@@ -37,6 +38,16 @@
       <!-- Table Body -->
       <tbody>
         <tr v-for="product in products" :key="product.id">
+
+          <!-- ADD Image -->
+
+          <td
+            v-if="product.id !== editingProductId"
+            class=" border flex items-center justify-center"
+          >
+          <img :src="product.image" class="object-cover h-[30px] w-[50px]  rounded-[4px]" />
+          </td>
+
           <!-- ---Add Products---  -->
          
           <td
@@ -83,7 +94,7 @@
             v-if="product.id !== editingProductId"
             class="px-4 py-2 border border-gray-300"
           >
-            {{ product.discountPercentage }}
+            {{ product.discountPercentage }}%
           </td>
 
           <td
@@ -93,6 +104,13 @@
             {{ product.description }}
           </td>
           <!-- ---Update Products---  -->
+          <td v-if="editingProduct && product.id === editingProductId">
+            <input
+              v-model="product.image"
+              type="text"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+            />
+          </td>
 
           <td v-if="editingProduct && product.id === editingProductId">
             <input
