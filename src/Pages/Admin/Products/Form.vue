@@ -134,32 +134,20 @@
             min="0"
             @input="checkPercentage"
           />
-          <span v-if="Percentage_error" class="text-red-500 text-sm"
-            >Enter between 0 to 100
-          </span>
         </div>
       </div>
 
-
-
-    <!-- Product image -->
-    <div class="w-full mb-1">
-          <label
-            for="image"
-            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
-            >Paste image url</label
-          >
+      <!-- Product image -->
+      <div class="w-full mb-1">
+        <div class="py-[2px] px-0 w-full text-sm flex my-2">
           <input
-            v-model="newProduct.image"
-          
-            type="text"
-            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
-            placeholder=" "
-            required
-          
+            type="file"
+            id="image"
+            ref="imageInput"
+            @change="ImageUpload"
           />
-       
         </div>
+      </div>
 
       <!-- Product Description -->
 
@@ -193,10 +181,10 @@
 import { ref, onMounted } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
-import { db } from "../../../Firebase/FB-Database";
+import { db, uploadImage } from "../../../Firebase/FB-Database";
+
 const router = useRouter();
 
-// const isEdit = ref(false);
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
   querySnapshot.forEach((doc) => {
@@ -224,32 +212,25 @@ const checkRating = () => {
   }
 };
 
-// check Percentage is greater than 0 and less than is 100
-let Percentage_error = false;
-const checkPercentage = () => {
-  if (
-  
-    newProduct.value.discountPercentage < 100
-  ) {
-    Percentage_error = true;
-  } else {
-    Percentage_error = false;
-  }
-};
-
 const newProduct = ref({
-  title: "",
-  price: "",
+  title: "aaaa",
+  price: "222",
 
-  stock: "",
-  brand: "",
-  rating: "",
-  category: "",
-  discountPercentage: "",
-  image:"",
-  description: " ",
+  stock: "33",
+  brand: "rrrrr",
+  rating: "4",
+  category: "yyyyy",
+  discountPercentage: "3",
+  image: "",
+  description: "rrrrrrrrr ",
 });
 
+const ImageUpload = (event) => {
+  console.log("event",event);
+  const file = event.target.files[0];
+  console.log("file", file);
+  newProduct.value.image = file.name;
+};
 
 
 
@@ -267,7 +248,7 @@ const handleSubmit = async () => {
     newProduct.value = {
       title: "",
       price: "",
-      image:"",
+      image: "",
       stock: "",
       brand: "",
       rating: "",

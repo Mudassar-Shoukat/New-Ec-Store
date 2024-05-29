@@ -56,7 +56,7 @@
 
   <!-- product list  -->
   <div class="flex flex-wrap justify-center items-center w-full">
-    <div
+    <div 
       v-for="product in products"
       :key="product.id"
       class="w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden bg-gray-100 hover:cursor-pointer hover:border-[#c5d0d0] border-gray-300"
@@ -83,6 +83,8 @@
         </div>
       </router-link>
     </div>
+
+
   </div>
 </template>
 
