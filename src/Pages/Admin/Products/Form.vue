@@ -140,12 +140,7 @@
       <!-- Product image -->
       <div class="w-full mb-1">
         <div class="py-[2px] px-0 w-full text-sm flex my-2">
-          <input
-            type="file"
-            id="image"
-            ref="imageInput"
-            @change="ImageUpload"
-          />
+          <input type="file" @change="uploadImage" />
         </div>
       </div>
 
@@ -181,7 +176,7 @@
 import { ref, onMounted } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
-import { db, uploadImage } from "../../../Firebase/FB-Database";
+import { db } from "../../../Firebase/FB-Database";
 
 const router = useRouter();
 
@@ -213,27 +208,28 @@ const checkRating = () => {
 };
 
 const newProduct = ref({
-  title: "aaaa",
-  price: "222",
-
-  stock: "33",
-  brand: "rrrrr",
-  rating: "4",
-  category: "yyyyy",
-  discountPercentage: "3",
+  title: "",
+  price: "",
+  stock: "",
+  brand: "",
+  rating: "",
+  category: "",
+  discountPercentage: "",
   image: "",
-  description: "rrrrrrrrr ",
+  description: " ",
 });
 
-const ImageUpload = (event) => {
-  console.log("event",event);
+const uploadImage = async (event) => {
   const file = event.target.files[0];
-  console.log("file", file);
-  newProduct.value.image = file.name;
+
+  const reader = new FileReader();
+  // console.log("reader", reader);
+  reader.onload = (e) => {
+    newProduct.value.image = e.target.result;
+    console.log("value", newProduct.value.image);
+  };
+  reader.readAsDataURL(file);
 };
-
-
-
 
 const handleSubmit = async () => {
   try {

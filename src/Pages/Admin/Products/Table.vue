@@ -12,26 +12,24 @@
   </div>
 
   <!-- ---Table outer div--- -->
-  <div
-    class="overflow-x-auto sm:rounded-lg border m-8"
-    v-if="products.length > 0"
-  >
+  <div class="overflow-x-auto border m-8 rounded-lg" v-if="products.length > 0">
     <table class="w-full text-sm text-center text-gray-500 border bg-[#F1F5F9]">
       <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
         <tr class="bg-[#e9ecf0]">
-          <th class="py-3 border border-[#e1dcdc]">Image</th>
-
-          <th class="px-6 py-3 border border-[#e1dcdc]">Title</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Price</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Stock</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Brand</th>
-          <th class="px-6 py-3border border-[#e1dcdc]">Rating</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Category</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Discount</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Discription</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Edit</th>
-          <th class="px-6 py-3 border border-[#e1dcdc]">Delete</th>
+          <th class="py-3 border border-[#e1dcdc] w-[80px]">Image</th>
+          <th class="border border-[#e1dcdc] w-[150px] overflow-hidden">
+            Title
+          </th>
+          <th class="border border-[#e1dcdc] w-[90px]">Price</th>
+          <th class="border border-[#e1dcdc] w-[90px]">Stock</th>
+          <th class="border border-[#e1dcdc] w-[120px]">Brand</th>
+          <th class="border border-[#e1dcdc] w-[90px]">Rating</th>
+          <th class="border border-[#e1dcdc] w-[120px]">Category</th>
+          <th class="border border-[#e1dcdc] w-[90px]">Discount</th>
+          <!-- <th class="  border border-[#e1dcdc] w-[440px] ">Discription</th> -->
+          <th class="border border-[#e1dcdc] w-[90px]">Edit</th>
+          <th class="border border-[#e1dcdc] w-[90px]">Delete</th>
         </tr>
       </thead>
       <!-- Table Body -->
@@ -53,7 +51,7 @@
 
           <td
             v-if="product.id !== editingProductId"
-            class="px-4 py-2 border border-gray-300"
+            class="px-4 py-2 w-[auto] border border-gray-300"
           >
             {{ product.title }}
           </td>
@@ -97,13 +95,13 @@
           >
             {{ product.discountPercentage }}%
           </td>
-
+          <!-- 
           <td
             v-if="product.id !== editingProductId"
-            class="px-4 py-2 border border-gray-300"
+            class="px-4 py-2 border border-gray-300 bg-slate-100 text-[1px]" 
           >
             {{ product.description }}
-          </td>
+          </td> -->
           <!-- ---Update Products---  -->
           <td v-if="editingProduct && product.id === editingProductId">
             <input
@@ -168,13 +166,13 @@
               class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
-          <td v-if="editingProduct && product.id === editingProductId">
+          <!-- <td v-if="editingProduct && product.id === editingProductId" >
             <input
               v-model="product.description"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300 "
             />
-          </td>
+          </td> -->
           <!-- ---Edit Button--- -->
 
           <td
