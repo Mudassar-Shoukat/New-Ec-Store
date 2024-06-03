@@ -238,7 +238,7 @@ const handleSubmit = async () => {
 
     if (newProductDoc.id) {
       console.log("New add product Id", newProductDoc.id);
-      router.push({ path: "/admin/products" });
+      router.push({ path: "/admindashboard/products" });
     }
     // Clear the form after successful submission
     newProduct.value = {

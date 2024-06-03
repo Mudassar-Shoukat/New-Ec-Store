@@ -5,7 +5,7 @@
       type="button"
       class="w-[300px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#99969f34] rounded-[5px] border border-[#d0cdcd] hover:bg-gray-100 text-[#4531db] hover:underline hover:[transition:0.3s_ease-in-out]"
     >
-      <router-link :to="{ path: '/admin/products/create' }"
+      <router-link to="/admindashboard/form"
         >Create New Product</router-link
       >
     </button>
@@ -185,7 +185,7 @@
             >
               <router-link
                 :to="{
-                  path: '/admin/products',
+                  path: '/admindashboard/products',
                   query: { product_id: product.id },
                 }"
               >

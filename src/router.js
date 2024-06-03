@@ -2,9 +2,11 @@ import { createWebHistory, createRouter } from "vue-router";
 import Main from "./Pages/Main.vue";
 import ProductDetail from "./Pages/SingleProductDetail.vue";
 import Login from "./Pages/Login.vue";
-import ProductIndex from "./Pages/Admin/Products/Table.vue";
+import Table from "./Pages/Admin/Products/Table.vue";
 import Form from "./Pages/Admin/Products/Form.vue";
-import adminDashboard from "./Layout/adminDashboard.vue";
+import AdminDashboard from "./Layout/AdminDashboard.vue";
+
+
 
 const routes = [
   {
@@ -23,21 +25,28 @@ const routes = [
     path: "/Login",
     component: Login,
   },
+ 
+ 
+  // Admindashboard dasboard Layout
   {
-    name: "Form",
-    path: "/admin/products/create",
-    component: Form,
+    path: '/admindashboard',
+    component: AdminDashboard,
+    children: [
+      {
+        name: 'admin.product.index',
+        path: 'products', // Nested path 
+        component: Table,
+      },
+
+      {
+        name: "Form",
+        path: "form",
+        component: Form,
+      },
+
+    ],
   },
-  {
-    name: "admin.product.index",
-    path: "/admin/products",
-    component: ProductIndex,
-  },
-  {
-    name: "adminlayout",
-    path: "/admindashboard",
-    component: adminDashboard,
-  },
+ 
 ];
 
 const router = createRouter({

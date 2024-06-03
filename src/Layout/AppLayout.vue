@@ -29,7 +29,7 @@
                 <!-- <router-link :to="{ path: '/admin/products' }"
                   >Admin
                 </router-link> -->
-                <router-link :to="{ path: '/admindashboard' }">
+                <router-link :to="{ path: '/admindashboard/products' }">
                   Admin</router-link
                 >
               </button>
