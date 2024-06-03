@@ -59,7 +59,7 @@
     <div
       v-for="product in products"
       :key="product.id"
-      class="w-[300px] h-[450px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden bg-gray-100 hover:cursor-pointer hover:border-[#c5d0d0] border-gray-300"
+      class="w-[330px] h-[355px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)] overflow-hidden bg-gray-100 hover:cursor-pointer hover:border-[#c5d0d0] border-gray-300"
     >
       <router-link
         :to="{
@@ -70,9 +70,9 @@
         <img
           :src="product.image"
           :alt="product.title"
-          class="h-[345px] w-[282px] m-[10px] flex bg-gray-50 border border-gray-300"
+          class="h-[250px] w-[310px] m-[10px] flex bg-gray-50 border border-gray-300"
         />
-        <div class="h-28 w-[100%]">
+        <div class="w-[100%]">
           <h1 class="text-lg text-[#e84409] font-medium">
             {{ product.title }}
           </h1>

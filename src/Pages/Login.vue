@@ -66,8 +66,8 @@ import { UseAuthStore } from "../Store";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const FormValue = {
-  username: "kminchelle",
-  password: "0lelplR",
+  username: "emilys",
+  password: "emilyspass",
 };
 
 const authStore = UseAuthStore();

@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <AppLayout>
@@ -10,9 +8,4 @@
 
 <script setup>
 import AppLayout from "/src/Layout/AppLayout.vue";
-
 </script>
-
-<style scoped>
-
-</style>

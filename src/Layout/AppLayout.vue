@@ -26,9 +26,12 @@
                 type="button"
                 class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e57e] rounded-[5px] border border-[#d8caca] hover:bg-gray-200 hover:text-[#5673e4] hover:underline"
               >
-                <router-link :to="{ path: '/admin/products' }"
+                <!-- <router-link :to="{ path: '/admin/products' }"
                   >Admin
-                </router-link>
+                </router-link> -->
+                <router-link :to="{ path: '/admindashboard' }">
+                  Admin</router-link
+                >
               </button>
             </ul>
             <!-- right side icons and other  -->

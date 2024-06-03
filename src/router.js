@@ -4,6 +4,7 @@ import ProductDetail from "./Pages/SingleProductDetail.vue";
 import Login from "./Pages/Login.vue";
 import ProductIndex from "./Pages/Admin/Products/Table.vue";
 import Form from "./Pages/Admin/Products/Form.vue";
+import adminDashboard from "./Layout/adminDashboard.vue";
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     name: "admin.product.index",
     path: "/admin/products",
     component: ProductIndex,
+  },
+  {
+    name: "adminlayout",
+    path: "/admindashboard",
+    component: adminDashboard,
   },
 ];
 

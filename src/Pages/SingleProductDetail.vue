@@ -8,19 +8,19 @@
   />
   <div v-if="product.value">
     <div class="container">
-  
-     
-
       <!-- Single Product image -->
       <section
-        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-gray-300 hover:cursor-pointer  hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-gray-300 hover:cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
       >
         <img
-        :src="product.value.images" :alt="product.value.title"
+          :src="product.value.images"
+          :alt="product.value.title"
           class="h-[350px] w-[282px] m-[10px] flex border bg-gray-50 border-gray-300"
         />
         <div class="h-18 w-[100%]">
-          <h1 class="text-lg text-[#e34f32] font-medium  border border-[#d8cbcb] mx-2 rounded-2xl bg-gray-100">
+          <h1
+            class="text-lg text-[#e34f32] font-medium border border-[#d8cbcb] mx-2 rounded-2xl bg-gray-100"
+          >
             {{ product.value.title }}
           </h1>
         </div>
@@ -91,12 +91,12 @@
 <script setup>
 import axios from "axios";
 
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import { collection, getDoc, doc } from 'firebase/firestore';
-import { db } from '../Firebase/FB-Database';
-import { UseCartStore } from '../Store';
-import { storeToRefs } from 'pinia';
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../Firebase/FB-Database";
+import { UseCartStore } from "../Store";
+import { storeToRefs } from "pinia";
 const cartStore = UseCartStore();
 const { AddtoCart } = storeToRefs(cartStore);
 // const product = ref("");
@@ -110,31 +110,28 @@ const addToCart = () => {
   });
 };
 
-
 const product = ref("");
 const route = useRoute();
 
 async function fetchProduct() {
   const productId = route.params.id;
   if (productId) {
-   
     try {
-      const docRef = doc(db, 'Products', productId);
+      const docRef = doc(db, "Products", productId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap) {
         product.value = docSnap.data();
       } else {
-        console.error('Product not found:', productId);
+        console.error("Product not found:", productId);
       }
     } catch (error) {
-      console.error('Error fetching product:', error);
+      console.error("Error fetching product:", error);
     }
   }
 }
 
 onMounted(fetchProduct);
-
 </script>
 
 <style scoped>

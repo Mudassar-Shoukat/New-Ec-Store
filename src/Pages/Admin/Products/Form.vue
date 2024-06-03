@@ -211,7 +211,7 @@ const newProduct = ref({
   title: "",
   price: "",
   stock: "",
-  brand: "",
+  brand: " ",
   rating: "",
   category: "",
   discountPercentage: "",
