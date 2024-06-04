@@ -1,7 +1,7 @@
 <template>
   <!-- search bar  -->
   <div
-    class="w-[502px] mx-auto mb-3 flex p-1 border rounded-[30px] border-[#e0dddd]"
+    class="w-[510px] mx-auto mb-3 flex p-[3px] border rounded-[30px] border-[#e0dddd]"
     id="outer"
   >
     <input

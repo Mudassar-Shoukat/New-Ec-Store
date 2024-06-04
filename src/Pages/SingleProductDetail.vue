@@ -6,45 +6,45 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <div v-if="product.value">
-    <div class="container">
+  <div v-if="product">
+    <div id="container"  >
       <!-- Single Product image -->
       <section
-        class="w-[300px] h-[440px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-gray-100 border-gray-300 hover:cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+        class="w-[340px] h-[390px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#d1c8c82f] border-gray-300 hover:cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
       >
         <img
-          :src="product.value.images"
-          :alt="product.value.title"
-          class="h-[350px] w-[282px] m-[10px] flex border bg-gray-50 border-gray-300"
+          :src="product.image"
+          :alt="product.title"
+          class="h-[300px] w-[320px] m-[10px] flex border bg-gray-50 border-gray-300 rounded-lg "
         />
-        <div class="h-18 w-[100%]">
+        <div class="h-14 w-full ">
           <h1
-            class="text-lg text-[#e34f32] font-medium border border-[#d8cbcb] mx-2 rounded-2xl bg-gray-100"
+            class="text-lg text-[#e34f32] mt-2 font-medium border border-[#d8cbcb] mx-2 rounded-2xl bg-[#d1c8c860]"
           >
-            {{ product.value.title }}
+            {{ product.title }}
           </h1>
         </div>
       </section>
 
       <!-- Product Discription or product detail -->
       <section
-        class="w-[400px] h-full m-[10px] flex flex-wrap text-center rounded-[5px] overflow-hidden bg-[#f6f4f4]"
+        class="w-[400px] h-full mt-[20px] mx-4 flex flex-wrap text-center rounded-[5px] overflow-hidden bg-[#FBFAFA]"
       >
         <h1
-          class="text-lg text-[#b15331] font-medium h-[35px] w-full p-1 flex bg-[white]"
+          class="text-lg text-[#b15331] font-medium h-[35px] w-full p-1 flex "
         >
-          {{ product.value.brand }} Brand
+          {{ product.brand }} Brand
         </h1>
-        <div class="h-[35px] w-full p-1 flex bg-[white]">
+        <div class="h-[35px] w-full p-1 flex ">
           <p class="text-[#2b1710] w-[140px]">
-            Discount: {{ product.value.discountPercentage }}%
+            Discount: {{ product.discountPercentage }}%
           </p>
           <h1 class="text-[#3b2d8d] w-[200px] text-lg font-medium text-left">
-            RS: ${{ product.value.price }}
+            RS: ${{ product.price }}
           </h1>
         </div>
 
-        <div class="h-[45px] w-full p-1 flex bg-[white]">
+        <div class="h-[45px] w-full p-1 flex ">
           <button
             @click="addToCart"
             type="button"
@@ -64,14 +64,14 @@
             Add to Cart
           </button>
         </div>
-        <div class="h-[35px] w-full p-1 flex bg-[white]">
+        <div class="h-[35px] w-full p-1 flex ">
           <p class="text-lg underline text-[#686565]">
-            Product Available: {{ product.value.stock }}
+            Product Available: {{ product.stock }}
           </p>
         </div>
-        <div class="h-[35px] w-full p-1 flex bg-[white]">
+        <div class="h-[35px] w-full p-1 flex ">
           <p class="text-[#97722e] w-[50px] text-2xl font-medium">
-            {{ product.value.rating }}
+            {{ product.rating }}
           </p>
           <span class="fa fa-star checked"></span>
           <span class="fa fa-star checked"></span>
@@ -80,8 +80,8 @@
           <span class="fa fa-star"></span>
         </div>
 
-        <div class="w-full p-1 flex bg-[white]">
-          <p class="text-left">{{ product.value.description }}</p>
+        <div class="w-full p-1 flex ">
+          <p class="text-left">{{ product.description }}</p>
         </div>
       </section>
     </div>
@@ -135,17 +135,17 @@ onMounted(fetchProduct);
 </script>
 
 <style scoped>
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+#container {
+  max-width: 900px;
+  margin: 104px auto;
+  padding: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
+background: rgba(233, 229, 229, 0.188);
   border-radius: 10px;
-  border: 2px solid rgb(239, 229, 229);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid rgb(217, 210, 210);
+  box-shadow: rgb(239, 232, 232) 2px 2px 12px ;
 }
 
 .checked {

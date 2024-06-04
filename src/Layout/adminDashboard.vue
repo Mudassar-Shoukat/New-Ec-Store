@@ -26,7 +26,7 @@
 
             <router-link to="/admindashboard/products">Products</router-link>
           </span>
-        <!-- catagory -->
+          <!-- catagory -->
           <span
             class="flex items-center px-4 py-2 hover:cursor-pointer hover:bg-[#d6dce2c8] bg-[#d6dce272] rounded-[8px] mb-2 border border-[#c6d0d9] hover:text-[#3b46da] text-sm"
           >
@@ -50,7 +50,7 @@
         </nav>
       </slot>
     </aside>
-<!-- router-view show -->
+    <!-- router-view show -->
     <main class="flex-grow">
       <slot>
         <router-view />

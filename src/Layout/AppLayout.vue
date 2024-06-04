@@ -7,7 +7,7 @@
         <div class="border px-7">
           <nav class="flex justify-between">
             <div class="flex items-center space-x-3 lg:pr-16 pr-6">
-              <h2 class="text-2xl text-[#0e2829]">shopping store</h2>
+              <h2 id="car">Car store</h2>
             </div>
 
             <!-- medium -->
@@ -162,7 +162,7 @@
       </slot>
     </header>
 
-    <main class=" mt-[80px] bg-[white]">
+    <main class="mt-[80px] bg-[white]">
       <slot> </slot>
     </main>
     <!-- <footer class="bg-[#e9e5e5] px-[6px] py-[10px]">
@@ -207,6 +207,7 @@ const logout = () => {
 };
 </script>
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Foldit:wght@100..900&display=swap");
 .right-drawer {
   position: absolute;
   top: 0;
@@ -234,5 +235,11 @@ const logout = () => {
 }
 .close:hover {
   background: rgb(240, 238, 238);
+}
+
+#car {
+  font-family: "Foldit", sans-serif;
+  font-size: x-large;
+  font-weight: 700;
 }
 </style>
