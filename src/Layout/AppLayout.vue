@@ -162,7 +162,7 @@
       </slot>
     </header>
 
-    <main class="px-[6px] py-[16px] mt-[80px] bg-[white]">
+    <main class=" mt-[80px] bg-[white]">
       <slot> </slot>
     </main>
     <!-- <footer class="bg-[#e9e5e5] px-[6px] py-[10px]">

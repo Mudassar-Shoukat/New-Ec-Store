@@ -5,9 +5,7 @@ import Login from "./Pages/Login.vue";
 import Table from "./Pages/Admin/Products/Table.vue";
 import Form from "./Pages/Admin/Products/Form.vue";
 import AdminDashboard from "./Layout/AdminDashboard.vue";
-
-
-
+import Catagory from "./Pages/Admin/Products/Catagory.vue";
 const routes = [
   {
     name: "Main",
@@ -25,28 +23,31 @@ const routes = [
     path: "/Login",
     component: Login,
   },
- 
- 
+
   // Admindashboard dasboard Layout
   {
-    path: '/admindashboard',
+    path: "/admindashboard",
     component: AdminDashboard,
     children: [
+      // Products Table
       {
-        name: 'admin.product.index',
-        path: 'products', // Nested path 
+        name: "admin.product.index",
+        path: "products", // Nested path
         component: Table,
       },
-
+// Product Form
       {
         name: "Form",
         path: "form",
         component: Form,
       },
-
+      {
+name:"Catagory",
+path:"catagory",
+component:Catagory
+      },
     ],
   },
- 
 ];
 
 const router = createRouter({

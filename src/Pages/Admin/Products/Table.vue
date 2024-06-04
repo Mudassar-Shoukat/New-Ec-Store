@@ -1,18 +1,23 @@
 <template>
   <!-- Button click push page in Form component -->
-  <div class="flex justify-center mb-7 mr-10">
-    <button
-      type="button"
-      class="w-[300px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#99969f34] rounded-[5px] border border-[#d0cdcd] hover:bg-gray-100 text-[#4531db] hover:underline hover:[transition:0.3s_ease-in-out]"
-    >
-      <router-link to="/admindashboard/form"
-        >Create New Product</router-link
+  <div class="flex mb-2 mx-5">
+    <div class="flex-grow">
+      <h1 class="mt-2 mb-2 ml-4 text-[20px] font-medium">Products</h1>
+    </div>
+    <div class="text-right">
+      <span
+        class="mt-2 mb-2 flex items-center justify-center p-2 w-[120px] hover:cursor-pointer hover:bg-[#ba1e1e] bg-[#de1b1b] rounded-[8px] border border-[#614946] text-sm text-white"
       >
-    </button>
+        <router-link to="/admindashboard/form">Add Product</router-link>
+      </span>
+    </div>
   </div>
 
   <!-- ---Table outer div--- -->
-  <div class="overflow-x-auto border m-8 rounded-lg" v-if="products.length > 0">
+  <div
+    class="overflow-x-auto border mx-4 rounded-lg"
+    v-if="products.length > 0"
+  >
     <table class="w-full text-sm text-center text-gray-500 border bg-[#F1F5F9]">
       <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
