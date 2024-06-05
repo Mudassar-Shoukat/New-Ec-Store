@@ -1,9 +1,9 @@
 <template>
   <div class="flex top-0 h-full">
     <aside
-      class="w-60 h-[1000px] flex flex-col overflow-y-auto md:flex bg-[#F1F5F9] rounded-tr-[10px] border-[2px] border-[#e5edf8]"
+      class="w-60 h-[1000px] flex flex-col overflow-y-auto md:flex bg-[#F1F5F9] rounded-tr-[10px] border-[2px] border-[#e5edf8] "
     >
-      <slot name="aside" class="bg-red-400">
+
         <nav class="flex-1 px-2 py-4">
           <!-- Product Table -->
           <span
@@ -48,10 +48,10 @@
             <router-link to="/admindashboard/catagory">Categorys</router-link>
           </span>
         </nav>
-      </slot>
+ 
     </aside>
     <!-- router-view show -->
-    <main class="flex-grow">
+    <main class="flex-grow bg-gray-50">
       <slot>
         <router-view />
       </slot>

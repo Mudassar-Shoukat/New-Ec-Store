@@ -2,7 +2,7 @@
   <div>
     <form
       @submit.prevent="handleSubmit"
-      class="max-w-md mx-auto bg-[#b3b8bf1f] px-6 pt-10 pb-8 border-[1px] border-[#d5d4d4] rounded-md mb-[100px]"
+      class="max-w-md mx-auto bg-[#b3b8bf1f] px-6 pt-10 pb-8 border-[1px] border-[#d5d4d4] rounded-md mb-[100px] mt-4"
     >
       <div class="text-center mb-8">
         <h1 class="text-2xl font-semibold text-[#4c4fe7e1] underline">

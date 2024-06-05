@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <!-- Table Body -->
-      <tbody>
+      <tbody class="text-sm">
         <tr v-for="product in products" :key="product.id">
           <!-- ADD Image -->
 
