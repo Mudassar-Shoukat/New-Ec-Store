@@ -104,18 +104,18 @@
       <!-- Product category -->
       <div class="grid md:grid-cols-2 md:gap-6">
         <div class="w-full mb-1">
-          <select
-            name="catagory"
-            type="text"
-            class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px] mt-[14px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
-            required
+          <label
+            for="category"
+            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
+            >Category</label
           >
-            <option>Choose Category</option>
-
-            <option v-for="Category in Categorys" id="Category.id">
-              {{ Category.name }}
-            </option>
-          </select>
+          <input
+            v-model="newProduct.category"
+            type="text"
+            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
+            placeholder=" "
+            required
+          />
         </div>
 
         <!-- Product Discount -->
@@ -146,7 +146,7 @@
 
       <!-- Product Description -->
 
-      <div class="w-full mb-5">
+      <div class="w-full mb-4">
         <label
           for="description"
           class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
@@ -160,11 +160,25 @@
           required
         />
       </div>
+<!-- catagory -->
+
+<select
+            name="catagory"
+            type="text"
+            class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px]  border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
+            required
+          >
+            <option>Choose Category</option>
+
+            <option v-for="Category in Categorys" :key="Category.id">
+              {{ Category.name }}
+            </option>
+          </select>
 
       <button
         type="submit"
         name="submit"
-        class="text-white bg-[#4c4fe7c7] hover:bg-[#4c4fe7e8] hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center"
+        class="text-white bg-[#4c4fe7c7] hover:bg-[#4c4fe7e8] hover:underline focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center mt-8"
       >
         Enter Data
       </button>
@@ -179,20 +193,6 @@ import { useRouter } from "vue-router";
 import { db } from "../../../Firebase/FB-Database";
 
 const router = useRouter();
-
-const Categorys = ref([]);
-async function fetchProducts() {
-  try {
-    const querySnapshot = await getDocs(collection(db, "Categorys"));
-    Categorys.value = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-  } catch (error) {
-    console.error("Error fetching Categorys:", error);
-  }
-}
-onMounted(fetchProducts);
 
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
@@ -270,4 +270,21 @@ const handleSubmit = async () => {
     console.error("Error adding document:", error);
   }
 };
+
+
+
+
+const Categorys = ref([]);
+async function fetchProducts() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "Categorys"));
+    Categorys.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  } catch (error) {
+    console.error("Error fetching Categorys:", error);
+  }
+}
+onMounted(fetchProducts);
 </script>
