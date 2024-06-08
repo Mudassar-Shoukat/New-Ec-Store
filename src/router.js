@@ -6,6 +6,7 @@ import Table from "./Pages/Admin/Products/Table.vue";
 import Form from "./Pages/Admin/Products/Form.vue";
 import AdminDashboard from "./Layout/AdminDashboard.vue";
 import Catagory from "./Pages/Admin/Products/Catagory.vue";
+import CatagoryForm from "./Pages/Admin/CatagoryForm.vue";
 const routes = [
   {
     name: "Main",
@@ -35,17 +36,24 @@ const routes = [
         path: "products", // Nested path
         component: Table,
       },
-// Product Form
+      // Product Form
       {
         name: "Form",
         path: "form",
         component: Form,
       },
       {
-name:"Catagory",
-path:"catagory",
-component:Catagory
+        name: "Catagory",
+        path: "catagory",
+        component: Catagory,
       },
+// catagory form
+{
+  name: "CatagoryForm",
+  path: "CatagoryForm",
+  component: CatagoryForm,
+},
+
     ],
   },
 ];

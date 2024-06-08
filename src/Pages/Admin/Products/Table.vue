@@ -6,9 +6,9 @@
     </div>
     <div class="text-right">
       <span
-        class="mt-2 mb-2 flex items-center justify-center p-2 w-[120px] hover:cursor-pointer hover:bg-[#ba1e1e] bg-[#de1b1b] rounded-[8px] border border-[#614946] text-sm text-white"
+        class="mt-2 mb-2 flex items-center justify-center p-2 w-[120px] hover:cursor-pointer hover:bg-[#325d5dd4] bg-[#416060] rounded-[5px] border border-[#56565b] text-sm text-white"
       >
-        <router-link to="/admindashboard/form">Add Product</router-link>
+        <router-link to="/admindashboard/form">+ Add Product</router-link>
       </span>
     </div>
   </div>
@@ -21,7 +21,7 @@
     <table class="w-full text-sm text-center text-gray-500 border bg-[#F1F5F9]">
       <!-- ---Table Header--- -->
       <thead class="text-xs text-gray-700 uppercase underline">
-        <tr class="bg-[#e9ecf0]">
+        <tr class="bg-[#e8e9eb]">
           <th class="py-3 border border-[#e1dcdc] w-[80px]">Image</th>
           <th class="border border-[#e1dcdc] w-[150px] overflow-hidden">
             Title
@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <!-- Table Body -->
-      <tbody class="text-sm">
+      <tbody class="text-sm bg-gray-100">
         <tr v-for="product in products" :key="product.id">
           <!-- ADD Image -->
 
@@ -185,7 +185,7 @@
             v-if="product.id !== editingProductId"
           >
             <button
-              class="bg-slate-200 px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
+              class="bg-[#ECEFEF] px-[25px] py-[4px] rounded-[8px] text-[blue] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
               @click="editProduct(product.id)"
             >
               <router-link
@@ -213,7 +213,7 @@
           <td class="border border-gray-300">
             <button
               @click="deleteProduct(product.id)"
-              class="bg-slate-200 px-[20px] py-[4px] rounded-[8px] text-[red] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
+              class="bg-[#eaebecb9] px-[20px] py-[4px] rounded-[8px] text-[red] border border-[#ccd1d8] hover:underline hover:bg-gray-100"
             >
               Delete
             </button>

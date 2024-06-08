@@ -104,18 +104,18 @@
       <!-- Product category -->
       <div class="grid md:grid-cols-2 md:gap-6">
         <div class="w-full mb-1">
-          <label
-            for="category"
-            class="text-[#333030] duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] text-[15px]"
-            >Category</label
-          >
-          <input
-            v-model="newProduct.category"
+          <select
+            name="catagory"
             type="text"
-            class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
-            placeholder=" "
+            class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px] mt-[14px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
             required
-          />
+          >
+            <option>Choose Category</option>
+
+            <option v-for="Category in Categorys" id="Category.id">
+              {{ Category.name }}
+            </option>
+          </select>
         </div>
 
         <!-- Product Discount -->
@@ -179,6 +179,20 @@ import { useRouter } from "vue-router";
 import { db } from "../../../Firebase/FB-Database";
 
 const router = useRouter();
+
+const Categorys = ref([]);
+async function fetchProducts() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "Categorys"));
+    Categorys.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  } catch (error) {
+    console.error("Error fetching Categorys:", error);
+  }
+}
+onMounted(fetchProducts);
 
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
