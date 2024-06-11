@@ -160,20 +160,24 @@
           required
         />
       </div>
-<!-- catagory -->
+      <!-- catagory -->
 
-<select
-            name="catagory"
-            type="text"
-            class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px]  border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
-            required
-          >
-            <option>Choose Category</option>
-
-            <option v-for="Category in Categorys" :key="Category.id">
-              {{ Category.name }}
-            </option>
-          </select>
+      <select
+        v-model="newProduct.category_id"
+        name="catagory"
+        type="text"
+        class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
+        required
+      >
+        <!-- <option value="" disabled selected >Choose Category</option> -->
+        <option
+          v-for="Category in Categorys"
+          :key="Category.id"
+          :value="Category.id"
+        >
+          {{ Category.name }}
+        </option>
+      </select>
 
       <button
         type="submit"
@@ -231,6 +235,7 @@ const newProduct = ref({
   discountPercentage: "",
   image: "",
   description: " ",
+  category_id: "",
 });
 
 const uploadImage = async (event) => {
@@ -265,14 +270,13 @@ const handleSubmit = async () => {
       category: "",
       discountPercentage: "",
       description: "",
+  category_id: "",
+
     };
   } catch (error) {
     console.error("Error adding document:", error);
   }
 };
-
-
-
 
 const Categorys = ref([]);
 async function fetchProducts() {

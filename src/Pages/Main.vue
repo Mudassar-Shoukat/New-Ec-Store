@@ -71,7 +71,7 @@
         <img
           :src="product.image"
           :alt="product.title"
-          class="h-[250px] w-[310px] m-[10px] flex bg-gray-50 border border-gray-300"
+          class="h-[250px] w-[310px] m-[10px] flex bg-gray-50 border border-gray-300 rounded-[6px]"
         />
         <div class="w-[100%]">
           <h1 class="text-lg text-[#e84409] font-medium">

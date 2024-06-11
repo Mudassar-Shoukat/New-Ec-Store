@@ -1,10 +1,10 @@
 <template>
   <div
-    class="mx-auto w-[390px] bg-[#f5f5f5b7] px-6 pt-10 pb-8 border-[1px] border-[#e4e2e2] rounded-md"
+    class="mx-auto w-[390px] bg-[#f5f5f5b7] px-6 pt-10 pb-8 border-[1px] border-[#e4e2e2] rounded-md "
   >
     <div class="w-full">
       <div class="text-center">
-        <h1 class="text-3xl font-semibold text-[#7165c5]">Sign in</h1>
+        <h1 class="text-3xl font-semibold text-[#3f3098]">Sign in</h1>
         <p class="mt-2 text-gray-500">Sign in below to access your account</p>
       </div>
       <div class="mt-5">
@@ -44,7 +44,7 @@
           <div class="my-6">
             <button
               type="submit"
-              class="w-full rounded-md bg-[#8b7cf1] py-2 text-white hover:bg-[#7668cf] hover:underline"
+              class="w-full rounded-md bg-[#1d1187] py-2 text-white hover:bg-[#403877] hover:underline"
             >
               Sign In
             </button>

@@ -32,7 +32,7 @@
           <th class="border border-[#e1dcdc] w-[90px]">Rating</th>
           <th class="border border-[#e1dcdc] w-[120px]">Category</th>
           <th class="border border-[#e1dcdc] w-[90px]">Discount</th>
-          <!-- <th class="  border border-[#e1dcdc] w-[440px] ">Discription</th> -->
+          <th class="border border-[#e1dcdc] w-[440px]">Select Category</th>
           <th class="border border-[#e1dcdc] w-[90px]">Edit</th>
           <th class="border border-[#e1dcdc] w-[90px]">Delete</th>
         </tr>
@@ -100,13 +100,16 @@
           >
             {{ product.discountPercentage }}%
           </td>
-          <!-- 
-          <td
-            v-if="product.id !== editingProductId"
-            class="px-4 py-2 border border-gray-300 bg-slate-100 text-[1px]" 
-          >
-            {{ product.description }}
-          </td> -->
+
+          <td class="px-4 py-2 border border-gray-300 bg-slate-100">
+            <input
+              v-for="category in filteredCategories"
+              :key="category.id"
+              type="text"
+              v-model="category.name"
+            />
+          </td>
+
           <!-- ---Update Products---  -->
           <td v-if="editingProduct && product.id === editingProductId">
             <input
@@ -282,7 +285,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../../Firebase/FB-Database";
-
+import { computed } from "vue";
 const products = ref([]);
 const showConfirmationPopup = ref(false);
 let productIdToDelete = null;
@@ -340,4 +343,22 @@ const confirmDelete = async () => {
 };
 
 onMounted(fetchProducts);
+
+const Categorys = ref([]);
+async function fetchCategory() {
+  try {
+    const querySnapshot = await getDocs(collection(db, "Categorys"));
+    Categorys.value = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+  } catch (error) {
+    console.error("Error fetching Categorys:", error);
+  }
+}
+
+const filteredCategories = computed(() => {
+  return Categorys.value.filter((category) => (category.id = category.name));
+});
+onMounted(fetchCategory);
 </script>
