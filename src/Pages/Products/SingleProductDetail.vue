@@ -7,7 +7,7 @@
     referrerpolicy="no-referrer"
   />
   <div v-if="product">
-    <div id="container"  >
+    <div id="container">
       <!-- Single Product image -->
       <section
         class="w-[340px] h-[390px] m-[10px] flex flex-wrap text-center rounded-[5px] border-[1px] [transition:0.3s_ease-in-out] overflow-hidden bg-[#d1c8c82f] border-gray-300 hover:cursor-pointer hover:shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
@@ -15,9 +15,9 @@
         <img
           :src="product.image"
           :alt="product.title"
-          class="h-[300px] w-[320px] m-[10px] flex border bg-gray-50 border-gray-300 rounded-lg "
+          class="h-[300px] w-[320px] m-[10px] flex border bg-gray-50 border-gray-300 rounded-lg"
         />
-        <div class="h-14 w-full ">
+        <div class="h-14 w-full">
           <h1
             class="text-lg text-[#e34f32] mt-2 font-medium border border-[#d8cbcb] mx-2 rounded-2xl bg-[#d1c8c860]"
           >
@@ -30,12 +30,10 @@
       <section
         class="w-[400px] h-full mt-[20px] mx-4 flex flex-wrap text-center rounded-[5px] overflow-hidden bg-[#FBFAFA]"
       >
-        <h1
-          class="text-lg text-[#b15331] font-medium h-[35px] w-full p-1 flex "
-        >
+        <h1 class="text-lg text-[#b15331] font-medium h-[35px] w-full p-1 flex">
           {{ product.brand }} Brand
         </h1>
-        <div class="h-[35px] w-full p-1 flex ">
+        <div class="h-[35px] w-full p-1 flex">
           <p class="text-[#2b1710] w-[140px]">
             Discount: {{ product.discountPercentage }}%
           </p>
@@ -44,7 +42,7 @@
           </h1>
         </div>
 
-        <div class="h-[45px] w-full p-1 flex ">
+        <div class="h-[45px] w-full p-1 flex">
           <button
             @click="addToCart"
             type="button"
@@ -64,12 +62,12 @@
             Add to Cart
           </button>
         </div>
-        <div class="h-[35px] w-full p-1 flex ">
+        <div class="h-[35px] w-full p-1 flex">
           <p class="text-lg underline text-[#686565]">
             Product Available: {{ product.stock }}
           </p>
         </div>
-        <div class="h-[35px] w-full p-1 flex ">
+        <div class="h-[35px] w-full p-1 flex">
           <p class="text-[#97722e] w-[50px] text-2xl font-medium">
             {{ product.rating }}
           </p>
@@ -80,7 +78,7 @@
           <span class="fa fa-star"></span>
         </div>
 
-        <div class="w-full p-1 flex ">
+        <div class="w-full p-1 flex">
           <p class="text-left">{{ product.description }}</p>
         </div>
       </section>
@@ -94,8 +92,8 @@ import axios from "axios";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import { collection, getDoc, doc } from "firebase/firestore";
-import { db } from "../Firebase/FB-Database";
-import { UseCartStore } from "../Store";
+import { db } from "../../Firebase/FB-Database";
+import { UseCartStore } from "../../Store";
 import { storeToRefs } from "pinia";
 const cartStore = UseCartStore();
 const { AddtoCart } = storeToRefs(cartStore);
@@ -142,10 +140,10 @@ onMounted(fetchProduct);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-background: rgba(233, 229, 229, 0.188);
+  background: rgba(233, 229, 229, 0.188);
   border-radius: 10px;
   border: 1px solid rgb(217, 210, 210);
-  box-shadow: rgb(239, 232, 232) 2px 2px 12px ;
+  box-shadow: rgb(239, 232, 232) 2px 2px 12px;
 }
 
 .checked {

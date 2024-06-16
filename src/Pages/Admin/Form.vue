@@ -56,7 +56,7 @@
         >
         <input
           v-model="newProduct.stock"
-          type="text"
+          type="number"
           class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
           placeholder=" "
           required
@@ -88,7 +88,7 @@
           >
           <input
             v-model="newProduct.rating"
-            type="float"
+            type="flo"
             class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
@@ -127,7 +127,7 @@
           >
           <input
             v-model="newProduct.discountPercentage"
-            type="text"
+            type="number"
             class="py-[2px] px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-[1px] border-[#91a091] appearance-none focus:outline-none focus:ring-0 focus:border-[#7e7eea]"
             placeholder=" "
             required
@@ -140,7 +140,7 @@
       <!-- Product image -->
       <div class="w-full mb-1">
         <div class="py-[2px] px-0 w-full text-sm flex my-2">
-          <input type="file" @change="uploadImage" />
+          <input type="file" @change="uploadImage" required/>
         </div>
       </div>
 
@@ -161,28 +161,27 @@
         />
       </div>
       <!-- catagory -->
-
-  <select
+<div  class="text-[#333030]  scale-75 top-3 -z-10 origin-[0] text-[20
+px]">Choose Category</div>
+      <select
         v-model="newProduct.category_name"
         name="catagory"
-        type="text"
+       
         class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
         required
+      
       >
-        <option value="" disabled selected >Choose Category</option>
+        <!-- <option  disabled selected>Choose Category</option> -->
+       
         <option
           v-for="Category in Categories"
           :key="Category.id"
           :value="Category.name"
-       
+          
         >
           {{ Category.name }}
         </option>
-      </select> 
-     
-
-
-
+      </select>
 
       <button
         type="submit"
@@ -199,9 +198,10 @@
 import { ref, onMounted } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
-import { db } from "../../../Firebase/FB-Database";
-import { defineEmits } from "vue";
+import { db } from "../../Firebase/FB-Database";
+import { computed } from "vue";
 const router = useRouter();
+
 
 onMounted(async () => {
   const querySnapshot = await getDocs(collection(db, "Products"));
@@ -231,13 +231,13 @@ const checkRating = () => {
 };
 
 const newProduct = ref({
-  title: "new product",
-  price: "139",
-  stock: "15",
-  brand: " itel",
-  rating: "3.2",
-  category: "product",
-  discountPercentage: "12",
+  title: "",
+  price: "",
+  stock: "",
+  brand: " ",
+  rating: "",
+  category: "",
+  discountPercentage: "",
   image: "",
   description: " ",
   category_id: "",
@@ -275,18 +275,12 @@ const handleSubmit = async () => {
       category: "",
       discountPercentage: "",
       description: "",
-  category_id: "",
-
+      category_id: "",
     };
   } catch (error) {
     console.error("Error adding document:", error);
   }
-
 };
-
-
-
-
 
 const Categories = ref([]);
 async function fetchCategoryid() {
@@ -302,5 +296,4 @@ async function fetchCategoryid() {
 }
 
 onMounted(fetchCategoryid);
-
 </script>

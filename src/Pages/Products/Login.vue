@@ -1,6 +1,6 @@
 <template>
   <div
-    class="mx-auto w-[390px] bg-[#f5f5f5b7] px-6 pt-10 pb-8 border-[1px] border-[#e4e2e2] rounded-md "
+    class="mx-auto w-[390px] bg-[#f5f5f5b7] px-6 pt-10 pb-8 border-[1px] border-[#e4e2e2] rounded-md"
   >
     <div class="w-full">
       <div class="text-center">
@@ -62,7 +62,7 @@
 </template>
 <script setup>
 import axios from "axios";
-import { UseAuthStore } from "../Store";
+import { UseAuthStore } from "../../Store";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const FormValue = {

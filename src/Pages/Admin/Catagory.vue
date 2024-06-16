@@ -34,7 +34,6 @@
           </td>
         </tr>
       </tbody>
-      
     </table>
   </div>
   <div v-else>
@@ -64,7 +63,8 @@
 import { ref, onMounted } from "vue";
 import { collection, getDocs } from "firebase/firestore";
 
-import { db } from "../../../Firebase/FB-Database";
+// import { db } from "../../../Firebase/FB-Database";
+import { db } from "../../Firebase/FB-Database";
 const Categories = ref([]);
 
 async function fetchProducts() {
@@ -74,11 +74,9 @@ async function fetchProducts() {
       id: doc.id,
       ...doc.data(),
     }));
-  
   } catch (error) {
     console.error("Error fetching Categories:", error);
   }
-
 }
 
 onMounted(fetchProducts);

@@ -32,14 +32,18 @@
           <th class="border border-[#e1dcdc] w-[90px]">Rating</th>
           <th class="border border-[#e1dcdc] w-[120px]">Category</th>
           <th class="border border-[#e1dcdc] w-[90px]">Discount</th>
-          <th class="border border-[#e1dcdc] w-[440px]">Select Category</th>
+          <th class="border border-[#e1dcdc] w-[150px]">Select Category</th>
           <th class="border border-[#e1dcdc] w-[90px]">Edit</th>
           <th class="border border-[#e1dcdc] w-[90px]">Delete</th>
         </tr>
       </thead>
       <!-- Table Body -->
       <tbody class="text-sm bg-gray-100">
-        <tr v-for="product in products" :key="product.id">
+        <tr
+          v-for="product in products"
+          :key="product.id"
+          class="hover:bg-[#ede8e84e]"
+        >
           <!-- ADD Image -->
 
           <td
@@ -175,7 +179,7 @@
           <td v-if="editingProduct && product.id === editingProductId">
             <input
               v-model="product.category_name"
-              type="text"
+              type="hidden"
               class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
 
@@ -292,14 +296,8 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import {
-  collection,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "../../../Firebase/FB-Database";
+import {collection,getDocs,deleteDoc,doc,updateDoc,} from "firebase/firestore";
+import { db } from "../../Firebase/FB-Database";
 import { computed } from "vue";
 
 const products = ref([]);
@@ -316,13 +314,11 @@ async function fetchProducts() {
       id: doc.id,
       ...doc.data(),
     }));
-
-    // console.log("fetch product", products.value);
   } catch (error) {
     console.error("Error fetching products:", error);
   }
 }
-// console.log("fetch product", fetchProducts());
+
 // Edit produt function
 
 const editProduct = (id) => {

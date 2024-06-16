@@ -4,7 +4,7 @@
   >
     <!--  -->
     <div
-      class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border  border-gray-200"
+      class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
     >
       <img
         :src="item.images[0]"
@@ -20,10 +20,8 @@
         </div>
 
         <span class="text-[#0C0C0C] text-sm">
-          
           <!-- Rs: ${{ item.totalPrice }} -->
-          Rs: ${{item.totalPrice }}
-       
+          Rs: ${{ item.totalPrice }}
         </span>
       </div>
 
@@ -49,8 +47,8 @@
         </div>
       </div>
 
-      <div class="flex text-right justify-end " >
-        <button 
+      <div class="flex text-right justify-end">
+        <button
           class="hover:underline hover:text-[red]"
           @click="removeFromCart()"
         >

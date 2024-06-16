@@ -12,7 +12,9 @@
                 alt="not"
                 class="h-[35px]"
               />
-              <h1 class="text-[25px] font-medium text-[#814d1a] font-serif ">Car store</h1>
+              <h1 class="text-[25px] font-medium text-[#814d1a] font-serif">
+                Car store
+              </h1>
             </div>
 
             <!-- medium -->
@@ -170,7 +172,7 @@
     <main class="mt-[80px] bg-[white]">
       <slot> </slot>
     </main>
-    <footer class="bg-gray-200 px-[6px] py-[10px] text-lg ">
+    <footer class="bg-gray-200 px-[6px] py-[10px] text-lg">
       <slot name="footer">Footer Section </slot>
     </footer>
   </div>
@@ -212,7 +214,6 @@ const logout = () => {
 };
 </script>
 <style scoped>
-
 .right-drawer {
   position: absolute;
   top: 0;
@@ -241,6 +242,4 @@ const logout = () => {
 .close:hover {
   background: rgb(240, 238, 238);
 }
-
-
 </style>

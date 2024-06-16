@@ -1,12 +1,13 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Main from "./Pages/Main.vue";
-import ProductDetail from "./Pages/SingleProductDetail.vue";
-import Login from "./Pages/Login.vue";
-import Table from "./Pages/Admin/Products/Table.vue";
-import Form from "./Pages/Admin/Products/Form.vue";
+import Main from "./Pages/Products/Main.vue";
+import ProductDetail from "./Pages/Products/SingleProductDetail.vue";
+import Login from "./Pages/Products/Login.vue";
+import Table from "./Pages/Admin/Table.vue";
+import Form from "./Pages/Admin/Form.vue";
 import AdminDashboard from "./Layout/AdminDashboard.vue";
-import Catagory from "./Pages/Admin/Products/Catagory.vue";
+import Catagory from "./Pages/Admin/Catagory.vue";
 import CatagoryForm from "./Pages/Admin/CatagoryForm.vue";
+
 const routes = [
   {
     name: "Main",
@@ -47,13 +48,12 @@ const routes = [
         path: "catagory",
         component: Catagory,
       },
-// catagory form
-{
-  name: "CatagoryForm",
-  path: "CatagoryForm",
-  component: CatagoryForm,
-},
-
+      // catagory form
+      {
+        name: "CatagoryForm",
+        path: "CatagoryForm",
+        component: CatagoryForm,
+      },
     ],
   },
 ];
