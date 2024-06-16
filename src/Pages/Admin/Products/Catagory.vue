@@ -2,7 +2,7 @@
   <!-- Button click push page in Form component -->
   <div class="flex mb-2 mx-5">
     <div class="flex-grow">
-      <h1 class="mt-2 mb-2 ml-4 text-[20px] font-medium">Product Categorys</h1>
+      <h1 class="mt-2 mb-2 ml-4 text-[20px] font-medium">Product Categories</h1>
     </div>
     <div class="text-right">
       <span
@@ -16,7 +16,7 @@
   </div>
 
   <!-- ---Table outer div--- -->
-  <div class="mx-4" v-if="Categorys.length > 0">
+  <div class="mx-4" v-if="Categories.length > 0">
     <table
       class="w-[220px] text-sm text-center text-gray-500 border bg-[white]"
     >
@@ -28,7 +28,7 @@
       </thead>
       <!-- Table Body -->
       <tbody class="text-sm bg-gray-100">
-        <tr v-for="Category in Categorys" :key="Category.id">
+        <tr v-for="Category in Categories" :key="Category.id">
           <td class="px-4 py-2 w-[auto] border border-gray-300">
             {{ Category.name }}
           </td>
@@ -65,18 +65,20 @@ import { ref, onMounted } from "vue";
 import { collection, getDocs } from "firebase/firestore";
 
 import { db } from "../../../Firebase/FB-Database";
-const Categorys = ref([]);
+const Categories = ref([]);
 
 async function fetchProducts() {
   try {
-    const querySnapshot = await getDocs(collection(db, "Categorys"));
-    Categorys.value = querySnapshot.docs.map((doc) => ({
+    const querySnapshot = await getDocs(collection(db, "Categories"));
+    Categories.value = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
+  
   } catch (error) {
-    console.error("Error fetching Categorys:", error);
+    console.error("Error fetching Categories:", error);
   }
+
 }
 
 onMounted(fetchProducts);

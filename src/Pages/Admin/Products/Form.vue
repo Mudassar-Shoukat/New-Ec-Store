@@ -162,22 +162,27 @@
       </div>
       <!-- catagory -->
 
-      <select
-        v-model="newProduct.category_id"
+  <select
+        v-model="newProduct.category_name"
         name="catagory"
         type="text"
         class="text-gray-900 rounded-[4px] focus:ring-blue-500 focus:border-blue-500 block w-full py-[6px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
         required
       >
-        <!-- <option value="" disabled selected >Choose Category</option> -->
+        <option value="" disabled selected >Choose Category</option>
         <option
-          v-for="Category in Categorys"
+          v-for="Category in Categories"
           :key="Category.id"
-          :value="Category.id"
+          :value="Category.name"
+       
         >
           {{ Category.name }}
         </option>
-      </select>
+      </select> 
+     
+
+
+
 
       <button
         type="submit"
@@ -195,7 +200,7 @@ import { ref, onMounted } from "vue";
 import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useRouter } from "vue-router";
 import { db } from "../../../Firebase/FB-Database";
-
+import { defineEmits } from "vue";
 const router = useRouter();
 
 onMounted(async () => {
@@ -226,13 +231,13 @@ const checkRating = () => {
 };
 
 const newProduct = ref({
-  title: "",
-  price: "",
-  stock: "",
-  brand: " ",
-  rating: "",
-  category: "",
-  discountPercentage: "",
+  title: "new product",
+  price: "139",
+  stock: "15",
+  brand: " itel",
+  rating: "3.2",
+  category: "product",
+  discountPercentage: "12",
   image: "",
   description: " ",
   category_id: "",
@@ -276,19 +281,26 @@ const handleSubmit = async () => {
   } catch (error) {
     console.error("Error adding document:", error);
   }
+
 };
 
-const Categorys = ref([]);
-async function fetchProducts() {
+
+
+
+
+const Categories = ref([]);
+async function fetchCategoryid() {
   try {
-    const querySnapshot = await getDocs(collection(db, "Categorys"));
-    Categorys.value = querySnapshot.docs.map((doc) => ({
+    const querySnapshot = await getDocs(collection(db, "Categories"));
+    Categories.value = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
   } catch (error) {
-    console.error("Error fetching Categorys:", error);
+    console.error("Error fetching Categories:", error);
   }
 }
-onMounted(fetchProducts);
+
+onMounted(fetchCategoryid);
+
 </script>

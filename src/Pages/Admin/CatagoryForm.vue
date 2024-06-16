@@ -53,7 +53,7 @@ const newCategory = ref({
 
 const handleSubmit = async () => {
   try {
-    const productCollection = collection(db, "Categorys");
+    const productCollection = collection(db, "Categories");
     const newCategoryDoc = await addDoc(productCollection, newCategory.value);
 
     if (newCategoryDoc.id) {

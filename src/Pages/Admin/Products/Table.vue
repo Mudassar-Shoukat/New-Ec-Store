@@ -101,13 +101,11 @@
             {{ product.discountPercentage }}%
           </td>
 
-          <td class="px-4 py-2 border border-gray-300 bg-slate-100">
-            <input
-              v-for="category in filteredCategories"
-              :key="category.id"
-              type="text"
-              v-model="category.name"
-            />
+          <td
+            v-if="product.id !== editingProductId"
+            class="px-4 py-2 border border-gray-300"
+          >
+            {{ product.category_name }}
           </td>
 
           <!-- ---Update Products---  -->
@@ -174,13 +172,30 @@
               class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
           </td>
-          <!-- <td v-if="editingProduct && product.id === editingProductId" >
+          <td v-if="editingProduct && product.id === editingProductId">
             <input
-              v-model="product.description"
+              v-model="product.category_name"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300 "
+              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
             />
-          </td> -->
+
+            <select
+              v-model="product.category_name"
+              name="catagory"
+              type="text"
+              class="text-gray-900 rounded-[4px] block w-full py-[6px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
+              required
+            >
+              <option value="" disabled selected>Choose Category</option>
+              <option
+                v-for="Category in Categories"
+                :key="Category.id"
+                :value="Category.name"
+              >
+                {{ Category.name }}
+              </option>
+            </select>
+          </td>
           <!-- ---Edit Button--- -->
 
           <td
@@ -286,6 +301,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../../Firebase/FB-Database";
 import { computed } from "vue";
+
 const products = ref([]);
 const showConfirmationPopup = ref(false);
 let productIdToDelete = null;
@@ -300,11 +316,13 @@ async function fetchProducts() {
       id: doc.id,
       ...doc.data(),
     }));
+
+    // console.log("fetch product", products.value);
   } catch (error) {
     console.error("Error fetching products:", error);
   }
 }
-
+// console.log("fetch product", fetchProducts());
 // Edit produt function
 
 const editProduct = (id) => {
@@ -344,21 +362,18 @@ const confirmDelete = async () => {
 
 onMounted(fetchProducts);
 
-const Categorys = ref([]);
-async function fetchCategory() {
+const Categories = ref([]);
+async function fetchCategoryid() {
   try {
-    const querySnapshot = await getDocs(collection(db, "Categorys"));
-    Categorys.value = querySnapshot.docs.map((doc) => ({
+    const querySnapshot = await getDocs(collection(db, "Categories"));
+    Categories.value = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
   } catch (error) {
-    console.error("Error fetching Categorys:", error);
+    console.error("Error fetching Categories:", error);
   }
 }
 
-const filteredCategories = computed(() => {
-  return Categorys.value.filter((category) => (category.id = category.name));
-});
-onMounted(fetchCategory);
+onMounted(fetchCategoryid);
 </script>
