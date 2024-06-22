@@ -1,7 +1,7 @@
 <template>
   <div>
     <header
-      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)]"
+      class="bg-[white] fixed top-0 w-full [box-shadow:0_3px_3px_rgb(237,_240,_239)] "
     >
       <slot name="header">
         <div class="border px-7">
@@ -12,7 +12,7 @@
                 alt="not"
                 class="h-[35px]"
               />
-              <h1 class="text-[25px] font-medium text-[#814d1a] font-serif">
+              <h1 class="text-[25px] font-medium text-[#814d1a] font-serif ">
                 Car store
               </h1>
             </div>
@@ -22,7 +22,7 @@
               <!-- Home Button -->
               <button
                 type="button"
-                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e57e] rounded-[5px] border border-[#d8caca] hover:bg-gray-200 hover:text-[#5673e4] hover:underline"
+                class="w-[100px] h-[35px] mt-2 mb-2 text-sm font-medium bg-[#e8e5e57e] rounded-[5px] border border-[#d8caca] hover:bg-gray-200 hover:text-[#5673e4] hover:underline "
                 @click="$router.push('/')"
               >
                 Home

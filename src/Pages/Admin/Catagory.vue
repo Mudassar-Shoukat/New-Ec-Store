@@ -62,8 +62,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { collection, getDocs } from "firebase/firestore";
-
-// import { db } from "../../../Firebase/FB-Database";
 import { db } from "../../Firebase/FB-Database";
 const Categories = ref([]);
 

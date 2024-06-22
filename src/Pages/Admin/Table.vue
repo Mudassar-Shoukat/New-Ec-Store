@@ -6,7 +6,7 @@
     </div>
     <div class="text-right">
       <span
-        class="mt-2 mb-2 flex items-center justify-center p-2 w-[120px] hover:cursor-pointer hover:bg-[#325d5dd4] bg-[#416060] rounded-[5px] border border-[#56565b] text-sm text-white"
+        class="mt-2 mb-2 flex items-center justify-center p-2 w-[120px] hover:cursor-pointer hover:bg-[#325d5dd4] bg-[#416060] rounded-[5px] border border-[#181871] text-sm text-white "
       >
         <router-link to="/admindashboard/form">+ Add Product</router-link>
       </span>
@@ -23,9 +23,7 @@
       <thead class="text-xs text-gray-700 uppercase underline">
         <tr class="bg-[#e8e9eb]">
           <th class="py-3 border border-[#e1dcdc] w-[80px]">Image</th>
-          <th class="border border-[#e1dcdc] w-[150px] overflow-hidden">
-            Title
-          </th>
+          <th class="border border-[#e1dcdc] w-[150px] overflow-hidden"> Title </th>
           <th class="border border-[#e1dcdc] w-[90px]">Price</th>
           <th class="border border-[#e1dcdc] w-[90px]">Stock</th>
           <th class="border border-[#e1dcdc] w-[120px]">Brand</th>
@@ -117,7 +115,7 @@
             <input
               v-model="product.image"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -125,7 +123,7 @@
             <input
               v-model="product.title"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -133,7 +131,7 @@
             <input
               v-model="product.price"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -141,7 +139,7 @@
             <input
               v-model="product.stock"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -149,7 +147,7 @@
             <input
               v-model="product.brand"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -157,7 +155,7 @@
             <input
               v-model="product.rating"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -165,7 +163,7 @@
             <input
               v-model="product.category"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
 
@@ -173,21 +171,21 @@
             <input
               v-model="product.discountPercentage"
               type="text"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
           </td>
           <td v-if="editingProduct && product.id === editingProductId">
             <input
               v-model="product.category_name"
               type="hidden"
-              class="w-full outline-[#cdd6cb] border py-1 bg-gray-100 text-center border-gray-300"
+              class="w-full outline-[#cdd6cb] border py-1  text-center border-gray-300"
             />
 
             <select
               v-model="product.category_name"
               name="catagory"
               type="text"
-              class="text-gray-900 rounded-[4px] block w-full py-[6px] border-b-[1px] border-[#91a091] bg-[#6062650d] outline-none text-sm hover:cursor-pointer hover:bg-slate-100"
+              class="w-full outline-[#cdd6cb] border py-1 text-center border-gray-300 hover:bg-slate-100 hover:cursor-pointer"
               required
             >
               <option value="" disabled selected>Choose Category</option>
@@ -245,7 +243,7 @@
     </table>
   </div>
   <div v-else>
-    <div role="status" class="text-center">
+    <div role="status" class="text-center justify-center ">
       <svg
         aria-hidden="true"
         class="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
